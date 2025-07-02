@@ -81,10 +81,6 @@
   color: white;
 }
 
-.subscribeButton {
-  /* This uses the global .btn styles, no changes needed */
-}
-
 .copyright {
   text-align: center;
   font-size: 0.85rem;
