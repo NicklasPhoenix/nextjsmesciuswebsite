@@ -59,7 +59,7 @@
 .promoSection {
   background-color: var(--background-subtle);
   padding: 2.5rem;
-  width: 350px; /* Increased width */
+  width: 550px; /* Increased width */
   text-align: left;
   display: flex;
   flex-direction: column;

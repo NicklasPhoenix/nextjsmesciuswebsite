@@ -11,10 +11,12 @@
   text-decoration: none;
   transition: all 0.25s ease-in-out;
   overflow: hidden;
+  cursor: pointer;
 }
 
 .card:hover {
-  transform: translateY(-6px);
+  /* Remove or comment out the translateY: */
+  /* transform: translateY(-6px); */
   box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
 }
 

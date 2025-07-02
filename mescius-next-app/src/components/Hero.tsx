@@ -1,7 +1,9 @@
 // src/components/Hero.tsx
+"use client";
 import Link from 'next/link';
+import { useRef, useEffect } from "react";
+import BlueprintCard from './BlueprintCard';
 import styles from './Hero.module.css';
-import BlueprintCard from './BlueprintCard'; // Import our actual card component
 
 // Sample data for the card we want to display
 const featuredBlueprint = {
@@ -14,17 +16,30 @@ const featuredBlueprint = {
 };
 
 export default function Hero() {
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const card = cardRef.current;
+    if (!card) return;
+    const handleAnimationEnd = () => {
+      card.classList.add(styles.settled);
+      card.style.animation = "none";
+    };
+    card.addEventListener("animationend", handleAnimationEnd);
+    return () => card.removeEventListener("animationend", handleAnimationEnd);
+  }, []);
+
   return (
     <section className={styles.hero}>
       <div className={styles.container}>
         <div className={styles.content}>
           <h1 className={styles.headline}>
-            Build Better
+            Build
             <br />
-            <span className="gradient-text">Data-Driven</span> Applications
+            Better <span className={styles.gradientBlue}>Applications</span> <span className={styles.gradientPurple}>Faster</span>
           </h1>
           <p className={styles.subheadline}>
-            From high-performance datagrids to automated reporting, leverage our components to build powerful, enterprise-grade applications, faster.
+            Mescius gives you the UI controls, reporting, and data tools to accelerate enterprise app development, modernize legacy projects, and deliver outstanding user experiences—faster.
           </p>
           <div className={styles.ctaGroup}>
             <Link href="/solutions" className="btn btnPrimary">
@@ -36,8 +51,10 @@ export default function Hero() {
           </div>
         </div>
         <div className={styles.visual}>
-          {/* We now use our REAL BlueprintCard component here */}
-          <BlueprintCard {...featuredBlueprint} />
+          <div ref={cardRef}>
+            {/* We now use our REAL BlueprintCard component here */}
+            <BlueprintCard {...featuredBlueprint} />
+          </div>
         </div>
       </div>
     </section>
