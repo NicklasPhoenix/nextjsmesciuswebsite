@@ -54,11 +54,6 @@ a {
   transition: color 0.2s ease-in-out;
 }
 
-a:hover {
-  color: var(--brand-primary-dark);
-  text-decoration: underline;
-}
-
 /* --- GLOBAL BUTTON SYSTEM --- */
 
 /* Base button style */

@@ -3,7 +3,6 @@
   background-color: var(--background-subtle);
   color: var(--text-light);
   padding: 4rem 0;
-  margin-top: 5rem;
   border-top: 1px solid var(--border-color);
 }
 
@@ -13,21 +12,22 @@
   padding: 0 1.5rem;
 }
 
+/* --- THE FIX IS HERE --- */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  /* Explicitly create 4 equal columns on larger screens */
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
 }
 
 .aboutColumn {
-  grid-column: span 2; /* Make the first column wider */
+  /* This column no longer needs to span multiple grid columns */
   font-size: 0.9rem;
 }
 
 .footerLogo {
   margin-bottom: 1.5rem;
-  /* Next.js Image component handles dark mode inversion if needed,
-     but for a light footer, we don't need the invert filter. */
+  filter: grayscale(1) brightness(0.5); /* A more subtle logo for the footer */
 }
 
 .linkColumn h4 {
@@ -59,6 +59,11 @@
 .socialIcons a {
   font-size: 1.2rem;
   color: var(--text-light);
+  transition: color 0.2s ease;
+}
+
+.socialIcons a:hover {
+  color: var(--brand-primary);
 }
 
 .subscribeButton {
@@ -75,4 +80,24 @@
 
 .subscribeButton:hover {
   background-color: var(--brand-primary);
+}
+
+/* --- AND HERE: Media Query for Mobile --- */
+@media (max-width: 768px) {
+  .grid {
+    /* On mobile, stack everything into a single column */
+    grid-template-columns: 1fr;
+    text-align: center; /* Center all text for a clean mobile look */
+  }
+
+  .aboutColumn, .linkColumn {
+    /* Ensure all columns are centered on mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .socialIcons {
+    justify-content: center; /* Center social icons */
+  }
 }
