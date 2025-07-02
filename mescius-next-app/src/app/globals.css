@@ -2,15 +2,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* New, more vibrant color palette */
-  --brand-primary: #4f46e5;      /* A modern, energetic indigo/blue */
-  --brand-primary-dark: #4338ca; /* Darker shade for hover */
-  --brand-accent: #a855f7;       /* A vibrant purple for gradients */
+  --brand-primary: #4f46e5;
+  --brand-primary-dark: #4338ca;
   --background-light: #ffffff;
   --background-subtle: #f9fafb;
-  --text-dark: #111827;           /* A deeper, richer black for text */
+  --text-dark: #111827;
   --text-light: #6b7280;
   --border-color: #e5e7eb;
+  --product-net: #D6564C;
+  --product-js: #809B59;
+  --product-ar: #EA8939;
+  --product-wijmo: #48A9C5;
+  --product-ds: #5A7E9E;
 }
 
 *, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
@@ -22,28 +25,17 @@ body {
   line-height: 1.6;
 }
 
-/* Base heading styles */
-h1, h2, h3, h4, h5, h6 {
-  color: var(--text-dark);
-  font-weight: 800;
-  line-height: 1.2;
-}
+h1, h2, h3, h4, h5, h6 { color: var(--text-dark); font-weight: 800; line-height: 1.2; }
 h1 { font-size: 3.25rem; letter-spacing: -0.05em; }
 h2 { font-size: 2.25rem; letter-spacing: -0.03em; }
 
-/* A helper class for gradient text */
-.gradient-text {
-  background: linear-gradient(90deg, var(--brand-accent), var(--brand-primary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  text-fill-color: transparent;
-}
+a { color: var(--brand-primary); text-decoration: none; font-weight: 600; transition: color 0.2s ease-in-out; }
+a:hover { color: var(--brand-primary-dark); }
 
-/* --- Final Button System --- */
+/* --- FINAL, STABLE BUTTON SYSTEM --- */
 .btn {
   display: inline-block;
-  padding: 0.85rem 1.75rem;
+  padding: 0.8rem 1.6rem;
   border-radius: 8px;
   font-weight: 700;
   font-size: 0.95rem;
@@ -52,24 +44,26 @@ h2 { font-size: 2.25rem; letter-spacing: -0.03em; }
   border: 1px solid transparent;
   transition: all 0.2s ease-in-out;
 }
-.btn:hover { text-decoration: none !important; transform: translateY(-3px); }
+.btn:hover { text-decoration: none !important; transform: translateY(-2px); }
 
 .btnPrimary {
   background-color: var(--brand-primary);
-  color: white;
-  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.25);
+  color: white; /* Explicitly set text color */
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.25);
 }
 .btnPrimary:hover {
   background-color: var(--brand-primary-dark);
-  box-shadow: 0 7px 25px rgba(79, 70, 229, 0.3);
+  color: white; /* Explicitly set text color on hover */
+  box-shadow: 0 6px 20px rgba(79, 70, 229, 0.3);
 }
+
 .btnSecondary {
   background-color: transparent;
   color: var(--text-dark);
   border-color: var(--border-color);
 }
 .btnSecondary:hover {
-  border-color: var(--brand-primary);
-  background-color: var(--brand-primary);
+  border-color: var(--text-dark);
+  background-color: var(--text-dark);
   color: white;
 }

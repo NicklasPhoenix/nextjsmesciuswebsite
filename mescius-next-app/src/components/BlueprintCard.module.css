@@ -2,42 +2,80 @@
 .card {
   display: flex;
   flex-direction: column;
-  text-decoration: none;
-  background: linear-gradient(160deg, #fdfdff, #f5f6fa);
+  height: 100%;
+  background-color: var(--background-light);
   border-radius: 12px;
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.05);
-  transition: all 0.3s ease-out;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
   color: var(--text-light);
+  text-decoration: none;
+  transition: all 0.25s ease-in-out;
+  overflow: hidden;
 }
+
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-  border-color: rgba(var(--product-color-rgb), 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
 }
+
 .cardHeader {
-  padding: 1.5rem 1.5rem 1rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  padding: 0.5rem 1.5rem;
+  background-image: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
 }
+
+.tag {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+}
+
+.net .cardHeader { background-color: var(--product-net); }
+.js .cardHeader { background-color: var(--product-js); }
+.wijmo .cardHeader { background-color: var(--product-wijmo); }
+.ds .cardHeader { background-color: var(--product-ds); }
+.ar .cardHeader { background-color: var(--product-ar); }
+
+.cardBody {
+  padding: 1.5rem;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--text-dark);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+.excerpt {
+  font-size: 1rem;
   margin: 0;
 }
-.cardBody { padding: 1.5rem; flex-grow: 1; }
-.cardFooter { padding: 0 1.5rem 1.5rem 1.5rem; }
-.cta {
-  color: var(--brand-primary);
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: 1.5rem;
+}
+
+.frameworks { display: flex; gap: 0.75rem; }
+.frameworkIcon { font-size: 1.5rem; color: #cbd5e0; }
+
+.arrowLink {
   font-weight: 600;
+  color: var(--brand-primary);
   display: flex;
   align-items: center;
+  text-decoration: none !important;
 }
-.arrow { transition: transform 0.2s ease-in-out; margin-left: 0.5rem; }
-.card:hover .arrow { transform: translateX(5px); }
-/* Product color variables for the glow effect */
-.net { --product-color-rgb: 214, 86, 76; }
-.js { --product-color-rgb: 128, 155, 89; }
-.wijmo { --product-color-rgb: 72, 169, 197; }
-.ds { --product-color-rgb: 90, 126, 158; }
-.ar { --product-color-rgb: 234, 137, 57; }
+
+.arrowLink span { transition: transform 0.2s ease; margin-left: 0.5rem; }
+.card:hover .arrowLink span { transform: translateX(5px); }
