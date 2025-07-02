@@ -1,7 +1,8 @@
 /* src/components/CoreTechnologies.module.css */
 .wrapper {
-  padding: 5rem 0;
-  border-top: 1px solid var(--border-color);
+  padding: 6rem 0; /* A bit more padding to give it space */
+  /* A soft, professional gradient using a light tint of our primary color */
+  background: linear-gradient(180deg, #f4f4ff 0%, var(--background-light) 100%);
 }
 
 .container {

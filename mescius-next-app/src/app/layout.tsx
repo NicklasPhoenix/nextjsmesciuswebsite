@@ -1,12 +1,12 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next';
-import './globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import './globals.css'; // Your global styles
+import Header from '@/components/Header'; // Import Header
+import Footer from '@/components/Footer'; // Import Footer
 
 export const metadata: Metadata = {
   title: 'Mescius - Modern Solutions',
-  description: 'The new Mescius website.',
+  description: 'A modern, dynamic component website.',
 };
 
 export default function RootLayout({
@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Add the Font Awesome stylesheet here */}
+        {/* Font Awesome for icons */}
         <link
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -27,9 +27,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <Header />
+        <Header /> {/* The Header is now correctly placed */}
         <main>{children}</main>
-        <Footer />
+        <Footer /> {/* The Footer is now correctly placed */}
       </body>
     </html>
   );

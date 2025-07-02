@@ -2,15 +2,25 @@
 import Hero from '@/components/Hero';
 import LogoStrip from '@/components/LogoStrip';
 import FeaturedSolutions from '@/components/FeaturedSolutions';
-import CoreTechnologies from '@/components/CoreTechnologies'; // Import the new component
+import CoreTechnologies from '@/components/CoreTechnologies';
+import FadeInOnScroll from '@/components/FadeInOnScroll';
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <LogoStrip />
-      <FeaturedSolutions />
-      <CoreTechnologies /> {/* Place it at the end */}
+      
+      <FadeInOnScroll>
+        <LogoStrip />
+      </FadeInOnScroll>
+
+      <FadeInOnScroll>
+        <FeaturedSolutions />
+      </FadeInOnScroll>
+      
+      <FadeInOnScroll>
+        <CoreTechnologies />
+      </FadeInOnScroll>
     </>
   );
 }

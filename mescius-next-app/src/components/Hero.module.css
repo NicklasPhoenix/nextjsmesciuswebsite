@@ -1,28 +1,68 @@
 /* src/components/Hero.module.css */
 .hero {
-  background: linear-gradient(135deg, #f7f9fc, #eef2f7); /* Subtle light gradient */
-  text-align: center;
-  padding: 6rem 1.5rem;
-  border-bottom: 1px solid var(--border-color);
+  padding: 6rem 0;
+  background-color: var(--background-subtle);
+  overflow: hidden; /* Prevent visual from overflowing on smaller screens */
 }
 
 .container {
-  max-width: 900px; /* Constrain width for readability */
+  max-width: 1280px;
   margin: 0 auto;
+  padding: 0 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 4rem;
+}
+
+.content {
+  text-align: left;
 }
 
 .headline {
-  font-size: 3.5rem; /* Large and impactful */
-  font-weight: 800; /* Extra bold */
-  letter-spacing: -1.5px;
-  line-height: 1.1;
-  color: var(--text-dark);
+  /* Uses global h1 styles */
+  margin-bottom: 1.5rem;
 }
 
 .subheadline {
-  font-size: 1.25rem;
-  color: var(--text-light);
-  max-width: 700px;
-  margin: 1.5rem auto 2.5rem auto; /* Top, horizontal, bottom margin */
+  font-size: 1.1rem;
+  max-width: 500px;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
 }
 
+/* FIX for the button group layout */
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+  gap: 1rem;
+}
+
+.visual {
+  perspective: 2000px;
+}
+
+/* FIX for the card in the visual area */
+.visual > :first-child { /* Targets the BlueprintCard */
+  transform: rotateY(-20deg) rotateX(10deg) scale(0.9);
+  cursor: default; /* Make it not look clickable here */
+  box-shadow: 0 25px 50px -12px rgba(0,0,0,0.3);
+}
+
+
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .visual {
+    display: none; /* Hide visual on smaller screens */
+  }
+}

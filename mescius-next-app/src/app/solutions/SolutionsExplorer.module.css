@@ -1,0 +1,108 @@
+/* src/components/SolutionsExplorer.module.css */
+.filterToolbar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.filterToolbar button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: var(--background-light);
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterToolbar button:hover {
+  border-color: var(--text-dark);
+  color: var(--text-dark);
+}
+
+.filterToolbar button.active {
+  background-color: var(--text-dark);
+  border-color: var(--text-dark);
+  color: white;
+  cursor: default;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2rem;
+}
+/* New animated gradient background */
+@keyframes gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.wrapper {
+  padding: 6rem 1.5rem;
+  background-color: var(--background-subtle);
+  border-top: 1px solid var(--border-color); /* To separate from logo strip */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.header h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  letter-spacing: -1.5px;
+}
+
+.header p {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  max-width: 700px;
+  margin: 1rem auto 0;
+}
+
+
+/* Filter styles remain the same */
+.filterToolbar {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 3.5rem;
+  flex-wrap: wrap;
+}
+
+.filterToolbar button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.5); /* Semi-transparent button */
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filterToolbar button:hover {
+  border-color: var(--text-dark);
+  color: var(--text-dark);
+}
+
+.filterToolbar button.active {
+  background-color: var(--text-dark);
+  border-color: var(--text-dark);
+  color: white;
+  cursor: default;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 2.5rem; /* Increased gap */
+}

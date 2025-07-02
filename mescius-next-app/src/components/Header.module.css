@@ -1,9 +1,12 @@
 /* src/components/Header.module.css */
 .header {
-  background-color: var(--background-light);
+  /* This creates the "frosted glass" effect */
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
   padding: 1rem 0;
   border-bottom: 1px solid var(--border-color);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   position: sticky;
   top: 0;
   z-index: 50;
@@ -21,7 +24,7 @@
 .nav {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Reduced gap for a tighter look */
+  gap: 0.5rem;
 }
 
 .navItem {
@@ -29,34 +32,33 @@
   display: flex;
 }
 
+/* Cleaner, simpler nav link styling */
 .navLink {
   color: var(--text-light);
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  padding: 0.75rem 1rem;
-  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
   transition: color 0.2s ease, background-color 0.2s ease;
-  white-space: nowrap;
 }
 
-.navItem:hover .navLink { /* On hover of the container, style the link */
+.navItem:hover .navLink {
   color: var(--text-dark);
-  background-color: var(--background-subtle);
+  background-color: rgba(249, 250, 251, 0.8); /* background-subtle with opacity */
 }
 
-/* --- The Mega Menu Styles --- */
+/* Mega Menu Styles */
 .megaMenu {
   position: absolute;
-  top: 90%; /* Position it slightly overlapping the bottom of the header */
+  top: 90%;
   left: 50%;
   transform: translateX(-50%);
-  padding-top: 1.5rem; /* Space for the overlap and shadow */
-  z-index: -1; /* Place it behind the header initially */
+  padding-top: 1.5rem;
+  z-index: -1;
 }
 
 .megaMenuGrid {
   display: grid;
-  /* We have 5 product categories, let's do a 3x2 grid */
   grid-template-columns: repeat(3, minmax(250px, 1fr));
   gap: 0.5rem;
   background-color: var(--background-light);
@@ -65,72 +67,14 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
 }
-
-.menuItem {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  padding: 1rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
-}
-
-.menuItem:hover {
-  background-color: var(--background-subtle);
-}
-
-.menuItemIcon {
-  font-size: 1.25rem;
-  color: var(--brand-primary);
-  width: 24px;
-  text-align: center;
-}
-
-.menuItemName {
-  display: block;
-  font-weight: 600;
-  color: var(--text-dark);
-}
-
-.menuItemDesc {
-  font-size: 0.9rem;
-  color: var(--text-light);
-}
-
-.actionsContainer {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; /* Reduced gap for a tighter fit */
-}
-
-.logInLink {
-  font-weight: 500;
-  color: var(--text-light);
-  text-decoration: none;
-  padding: 0.75rem 1rem; /* Added padding for a larger click area */
-  border-radius: 8px; /* Added border-radius */
-  transition: all 0.2s ease;
-}
-
-/* FIX: Add the background-color on hover */
-.logInLink:hover {
-  color: var(--text-dark);
-  background-color: var(--background-subtle);
-}
-
-.cartLink {
-  font-size: 1.25rem;
-  color: var(--text-light);
-  padding: 0.75rem 1rem; /* Added padding */
-  border-radius: 8px; /* Added border-radius */
-  transition: all 0.2s ease;
-  display: flex; /* Helps center the icon */
-  align-items: center;
-}
-
-/* FIX: Add the background-color on hover */
-.cartLink:hover {
-  color: var(--text-dark);
-  background-color: var(--background-subtle);
-}
+/* ... (the rest of the mega menu styles are fine) ... */
+.menuItem { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease; }
+.menuItem:hover { background-color: var(--background-subtle); }
+.menuItemIcon { font-size: 1.25rem; color: var(--brand-primary); width: 24px; text-align: center; }
+.menuItemName { display: block; font-weight: 600; color: var(--text-dark); }
+.menuItemDesc { font-size: 0.9rem; color: var(--text-light); }
+.actionsContainer { display: flex; align-items: center; gap: 0.5rem; }
+.logInLink { font-weight: 600; color: var(--text-light); text-decoration: none; padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.2s ease; }
+.logInLink:hover { color: var(--text-dark); background-color: var(--background-subtle); }
+.cartLink { font-size: 1.25rem; color: var(--text-light); padding: 0.5rem 1rem; border-radius: 6px; transition: all 0.2s ease; display: flex; align-items: center; }
+.cartLink:hover { color: var(--text-dark); background-color: var(--background-subtle); }

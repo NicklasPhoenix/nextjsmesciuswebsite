@@ -1,56 +1,42 @@
 [
   {
-    "id": "logistics-modernization",
-    "href": "/blueprints/logistics-modernization",
-    "industry": "Logistics & Supply Chain",
+    "id": "desktop-evolution",
+    "href": "/solutions/desktop-evolution",
     "product": "net",
-    "title": "Modernize Legacy Desktop Applications",
-    "excerpt": "Use ComponentOne controls to update mission-critical WPF and WinForms apps, reducing data entry errors and training time without a costly rewrite.",
+    "title": "Desktop Evolution",
+    "excerpt": "Transform legacy WinForms & WPF applications into modern, high-performance powerhouses.",
     "frameworks": ["winforms", "wpf"]
   },
   {
-    "id": "regtech-compliance",
-    "href": "/blueprints/regtech-compliance",
-    "industry": "Regulatory Technologies",
+    "id": "interactive-finance",
+    "href": "/solutions/interactive-finance",
     "product": "js",
-    "title": "Ensure Data Integrity for Regulatory Compliance",
-    "excerpt": "Build a unified data pipeline using SpreadJS for front-end validation and Document Solutions for automated, secure back-end report generation.",
+    "title": "Interactive Finance",
+    "excerpt": "Build secure, collaborative financial models and dashboards for the modern web.",
     "frameworks": ["react", "angular", "vue"]
   },
   {
-    "id": "bi-performance",
-    "href": "/blueprints/bi-performance",
-    "industry": "BI SaaS for Manufacturing",
+    "id": "hyperspeed-analytics",
+    "href": "/solutions/hyperspeed-analytics",
     "product": "wijmo",
-    "title": "Improve Performance in Data-Intensive Apps",
-    "excerpt": "Integrate Wijmo's high-performance components to resolve critical speed issues in BI dashboards and secure major client renewals.",
+    "title": "Hyperspeed Analytics",
+    "excerpt": "Deliver real-time BI dashboards that process millions of data points without compromise.",
     "frameworks": ["react", "angular", "vue"]
   },
   {
-    "id": "real-time-dashboards",
-    "href": "/blueprints/real-time-dashboards",
-    "industry": "Energy & Utilities",
-    "product": "wijmo",
-    "title": "Build Real-Time, High-Frequency Dashboards",
-    "excerpt": "Leverage Wijmo's datagrid, engineered to process thousands of real-time IoT data updates per second without freezing or crashing.",
-    "frameworks": ["react", "angular"]
+    "id": "automated-reporting",
+    "href": "/solutions/automated-reporting",
+    "product": "ar",
+    "title": "Automated Reporting",
+    "excerpt": "Generate pixel-perfect invoices, statements, and reports for any platform, on demand.",
+    "frameworks": ["dotnet", "react"]
   },
   {
-    "id": "financial-modeling",
-    "href": "/blueprints/financial-modeling",
-    "industry": "Financial Services",
-    "product": "js",
-    "title": "Create Interactive Financial Models on the Web",
-    "excerpt": "Use SpreadJS to transform insecure, decentralized Excel models into a secure, collaborative web platform that cuts development time in half.",
-    "frameworks": ["react", "angular", "vue"]
-  },
-  {
-    "id": "document-automation",
-    "href": "/blueprints/document-automation",
-    "industry": "Insurance",
+    "id": "document-intelligence",
+    "href": "/solutions/document-intelligence",
     "product": "ds",
-    "title": "Automate Secure Document Generation",
-    "excerpt": "Use Document Solutions for .NET to automate secure policy and report generation, ensuring 100% compliance and drastically cutting operational costs.",
+    "title": "Document Intelligence",
+    "excerpt": "Programmatically create, manipulate, and manage complex documents and PDFs at scale.",
     "frameworks": ["dotnet"]
   }
 ]

@@ -1,98 +1,75 @@
 /* src/app/globals.css */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
 :root {
-  /* 1. Primary Palette (Our New, Modern Foundation) */
-  --brand-primary: #007acc;         /* A vibrant, trustworthy blue for all primary actions (buttons, links) */
-  --brand-primary-dark: #005a99;    /* A darker version for hover states */
-  --background-light: #ffffff;      /* Pure white for the main background */
-  --background-subtle: #f7f9fc;    /* A very light, cool gray for subtle backgrounds (like cards) */
-  --text-dark: #1a202c;              /* A dark, almost-black for headings */
-  --text-light: #4a5568;             /* A softer gray for body text */
-  --border-color: #e2e8f0;         /* A light, neutral border color */
-
-  /* 2. Secondary & Accent Colors (Maintaining Your Brand Identity) */
-  /* We keep these exactly as they were to connect with your products */
-  --product-net: #D6564C;      /* ComponentOne (Red) */
-  --product-js: #809B59;      /* SpreadJS & Spread.NET (Green) */
-  --product-ar: #EA8939;      /* ActiveReports (Orange) */
-  --product-wijmo: #48A9C5;    /* Wijmo (Blue) */
-  --product-ds: #5A7E9E;      /* Document Solutions (Blue-Grey) */
-
-  /* 3. System & Feedback Colors */
-  --color-success: #28a745;
-  --color-warning: #ffc107;
-  --color-error: #dc3545;
+  /* New, more vibrant color palette */
+  --brand-primary: #4f46e5;      /* A modern, energetic indigo/blue */
+  --brand-primary-dark: #4338ca; /* Darker shade for hover */
+  --brand-accent: #a855f7;       /* A vibrant purple for gradients */
+  --background-light: #ffffff;
+  --background-subtle: #f9fafb;
+  --text-dark: #111827;           /* A deeper, richer black for text */
+  --text-light: #6b7280;
+  --border-color: #e5e7eb;
 }
-/* src/app/globals.css */
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+*, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }
 
 body {
   background-color: var(--background-light);
   color: var(--text-light);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-  line-height: 1.7;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  line-height: 1.6;
 }
-/* src/app/globals.css */
 
+/* Base heading styles */
 h1, h2, h3, h4, h5, h6 {
   color: var(--text-dark);
+  font-weight: 800;
   line-height: 1.2;
-  margin-bottom: 1rem;
+}
+h1 { font-size: 3.25rem; letter-spacing: -0.05em; }
+h2 { font-size: 2.25rem; letter-spacing: -0.03em; }
+
+/* A helper class for gradient text */
+.gradient-text {
+  background: linear-gradient(90deg, var(--brand-accent), var(--brand-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
-p {
-  margin-bottom: 1.2rem;
-}
-
-a {
-  color: var(--brand-primary);
-  text-decoration: none;
-  transition: color 0.2s ease-in-out;
-}
-
-/* --- GLOBAL BUTTON SYSTEM --- */
-
-/* Base button style: slightly less padding, softer font */
+/* --- Final Button System --- */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.75rem; /* Reduced vertical padding */
+  padding: 0.85rem 1.75rem;
   border-radius: 8px;
-  font-weight: 500; /* Reduced font weight for a less bulky look */
+  font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
   cursor: pointer;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   transition: all 0.2s ease-in-out;
 }
+.btn:hover { text-decoration: none !important; transform: translateY(-3px); }
 
-/* Primary Button: Still dark, but with a more subtle hover */
 .btnPrimary {
-  background-color: var(--text-dark);
+  background-color: var(--brand-primary);
   color: white;
+  box-shadow: 0 4px 20px rgba(79, 70, 229, 0.25);
 }
-
-/* New Hover: A subtle lift and color fade instead of a stark change */
 .btnPrimary:hover {
-  background-color: #3c4a5f; /* A slightly lighter version of our dark color */
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  background-color: var(--brand-primary-dark);
+  box-shadow: 0 7px 25px rgba(79, 70, 229, 0.3);
 }
-
-/* Secondary Button: Clean, outline style */
 .btnSecondary {
   background-color: transparent;
-  color: var(--text-light);
+  color: var(--text-dark);
   border-color: var(--border-color);
 }
-
 .btnSecondary:hover {
-  border-color: var(--text-dark);
-  background-color: var(--text-dark);
+  border-color: var(--brand-primary);
+  background-color: var(--brand-primary);
   color: white;
-  transform: translateY(-2px);
 }
