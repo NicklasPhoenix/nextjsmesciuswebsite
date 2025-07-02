@@ -14,6 +14,7 @@
   --product-ar: #EA8939;
   --product-wijmo: #48A9C5;
   --product-ds: #5A7E9E;
+  --brand-primary-rgb: 79, 70, 229; /* RGB for the brand primary color */
 }
 
 *, *::before, *::after { box-sizing: border-box; padding: 0; margin: 0; }

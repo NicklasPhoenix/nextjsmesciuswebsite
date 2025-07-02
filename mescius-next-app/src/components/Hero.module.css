@@ -102,3 +102,10 @@
   background-clip: text;
   color: transparent;
 }
+
+/* filepath: c:\Users\NicklasSchaefer\Desktop\Useful Documents\Better website suggestions\nextjsmesciuswebsite\mescius-next-app\src\components\Header.module.css */
+.navLink::before {
+  /* ...existing styles... */
+  border: 1px solid rgba(var(--brand-primary-rgb), 0.8); /* Increased opacity */
+  /* ...existing styles... */
+}
