@@ -2,7 +2,7 @@
 .footer {
   background-color: var(--background-subtle);
   color: var(--text-light);
-  padding: 4rem 0;
+  padding: 5rem 0 2rem 0;
   border-top: 1px solid var(--border-color);
 }
 
@@ -12,92 +12,101 @@
   padding: 0 1.5rem;
 }
 
-/* --- THE FIX IS HERE --- */
+/* FIX for the wrapping layout */
 .grid {
   display: grid;
-  /* Explicitly create 4 equal columns on larger screens */
-  grid-template-columns: repeat(4, 1fr);
+  /* Explicitly define 4 columns, giving the first more space */
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
   gap: 2rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 2rem;
 }
 
 .aboutColumn {
-  /* This column no longer needs to span multiple grid columns */
+  padding-right: 2rem;
   font-size: 0.9rem;
 }
 
 .footerLogo {
+  filter: grayscale(1) brightness(0.5);
   margin-bottom: 1.5rem;
-  filter: grayscale(1) brightness(0.5); /* A more subtle logo for the footer */
 }
 
 .linkColumn h4 {
   color: var(--text-dark);
   font-weight: 600;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
   font-size: 1rem;
 }
 
-.linkColumn a,
-.linkColumn p {
+/* FIX for the boring link list */
+.linkColumn a {
   display: block;
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
   color: var(--text-light);
   text-decoration: none;
   font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
 }
 
+/* New link hover effect: No underline, changes color and moves slightly */
 .linkColumn a:hover {
   color: var(--brand-primary);
-  text-decoration: underline;
+  text-decoration: none;
+  transform: translateX(4px);
 }
 
 .socialIcons {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .socialIcons a {
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: var(--text-light);
-  transition: color 0.2s ease;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--border-color);
+  border-radius: 50%;
+  transition: all 0.2s ease;
 }
 
 .socialIcons a:hover {
-  color: var(--brand-primary);
+  background-color: var(--brand-primary);
+  color: white;
 }
 
 .subscribeButton {
-  background-color: var(--text-dark);
-  color: white;
-  padding: 0.75rem 1.5rem;
-  border-radius: 8px;
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.2s ease-in-out;
+  /* This uses the global .btn styles, no changes needed */
 }
 
-.subscribeButton:hover {
-  background-color: var(--brand-primary);
+.copyright {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #a0aec0;
 }
 
-/* --- AND HERE: Media Query for Mobile --- */
-@media (max-width: 768px) {
+/* New media query to handle all smaller screens */
+@media (max-width: 900px) {
   .grid {
-    /* On mobile, stack everything into a single column */
-    grid-template-columns: 1fr;
-    text-align: center; /* Center all text for a clean mobile look */
+    grid-template-columns: 1fr 1fr; /* 2x2 grid on tablets */
   }
-
-  .aboutColumn, .linkColumn {
-    /* Ensure all columns are centered on mobile */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  .aboutColumn {
+    grid-column: span 2; /* Span full width */
   }
+}
 
-  .socialIcons {
-    justify-content: center; /* Center social icons */
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr; /* Single column on mobile */
+    text-align: left; /* Revert to left-align on mobile stack */
+  }
+  .aboutColumn {
+    grid-column: span 1; /* Reset span */
   }
 }

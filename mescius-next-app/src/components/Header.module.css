@@ -18,23 +18,119 @@
   align-items: center;
 }
 
-.navLinks {
+.nav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 0.5rem; /* Reduced gap for a tighter look */
 }
 
-.navLinks a {
-  color: var(--text-dark);
-  font-weight: 600;
+.navItem {
+  position: relative;
+  display: flex;
+}
+
+.navLink {
+  color: var(--text-light);
+  font-weight: 500;
   text-decoration: none;
-  padding-bottom: 0.25rem;
-  border-bottom: 2px solid transparent;
-  transition: border-color 0.2s ease-in-out, color 0.2s ease-in-out;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
 }
 
-.navLinks a:hover {
+.navItem:hover .navLink { /* On hover of the container, style the link */
+  color: var(--text-dark);
+  background-color: var(--background-subtle);
+}
+
+/* --- The Mega Menu Styles --- */
+.megaMenu {
+  position: absolute;
+  top: 90%; /* Position it slightly overlapping the bottom of the header */
+  left: 50%;
+  transform: translateX(-50%);
+  padding-top: 1.5rem; /* Space for the overlap and shadow */
+  z-index: -1; /* Place it behind the header initially */
+}
+
+.megaMenuGrid {
+  display: grid;
+  /* We have 5 product categories, let's do a 3x2 grid */
+  grid-template-columns: repeat(3, minmax(250px, 1fr));
+  gap: 0.5rem;
+  background-color: var(--background-light);
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--border-color);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
+
+.menuItem:hover {
+  background-color: var(--background-subtle);
+}
+
+.menuItemIcon {
+  font-size: 1.25rem;
   color: var(--brand-primary);
-  border-bottom-color: var(--brand-primary);
+  width: 24px;
+  text-align: center;
 }
 
+.menuItemName {
+  display: block;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.menuItemDesc {
+  font-size: 0.9rem;
+  color: var(--text-light);
+}
+
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Reduced gap for a tighter fit */
+}
+
+.logInLink {
+  font-weight: 500;
+  color: var(--text-light);
+  text-decoration: none;
+  padding: 0.75rem 1rem; /* Added padding for a larger click area */
+  border-radius: 8px; /* Added border-radius */
+  transition: all 0.2s ease;
+}
+
+/* FIX: Add the background-color on hover */
+.logInLink:hover {
+  color: var(--text-dark);
+  background-color: var(--background-subtle);
+}
+
+.cartLink {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  padding: 0.75rem 1rem; /* Added padding */
+  border-radius: 8px; /* Added border-radius */
+  transition: all 0.2s ease;
+  display: flex; /* Helps center the icon */
+  align-items: center;
+}
+
+/* FIX: Add the background-color on hover */
+.cartLink:hover {
+  color: var(--text-dark);
+  background-color: var(--background-subtle);
+}

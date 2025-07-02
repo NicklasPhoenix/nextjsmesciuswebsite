@@ -29,8 +29,8 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
 }
 
 .techCard {
@@ -38,6 +38,7 @@
   text-decoration: none;
   color: var(--text-light);
   background-color: var(--background-light);
+  /* FIX: Use a 2px border */
   border: 2px solid var(--border-color);
   padding: 2.5rem 2rem;
   border-radius: 12px;
@@ -50,29 +51,47 @@
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
 }
 
-/* --- THIS IS THE FIX for the colored border on hover --- */
+/* FIX: Apply product colors to the border on hover */
 .net:hover { border-color: var(--product-net); }
 .js:hover { border-color: var(--product-js); }
 .wijmo:hover { border-color: var(--product-wijmo); }
 .ar:hover { border-color: var(--product-ar); }
-/* --- End of Fix --- */
+.ds:hover { border-color: var(--product-ds); }
 
 
-/* Styles for the new icon */
 .icon {
-  font-size: 2.5rem; /* Large icon */
+  font-size: 2.25rem;
   margin-bottom: 1.5rem;
-  color: var(--brand-primary); /* Use our primary blue for a consistent look */
+  color: var(--brand-primary);
 }
 
 .techCard h3 {
   color: var(--text-dark);
-  font-size: 1.5rem;
-  margin-top: 0; /* Removed margin-top as icon provides space */
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 0;
   margin-bottom: 0.5rem;
 }
 
 .techCard p {
-  font-size: 1rem;
+  font-size: 0.9rem;
   margin-bottom: 0;
+}
+
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
 }

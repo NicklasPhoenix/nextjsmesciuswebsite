@@ -2,35 +2,42 @@
 import Link from 'next/link';
 import styles from './CoreTechnologies.module.css';
 
-// We map our product keys to a specific, high-quality Font Awesome icon
-const techMap = [
+// The 'key' now matches our product color variables (e.g., 'net' for ComponentOne)
+const technologies = [
   {
-    key: 'net',
+    key: 'net', // Changed from 'componentone'
     name: 'ComponentOne',
     description: '.NET UI controls for desktop, web, and mobile.',
     iconClass: 'fa-solid fa-layer-group',
     href: '/products/componentone',
   },
   {
-    key: 'js',
-    name: 'SpreadJS',
-    description: 'High-performance JavaScript spreadsheet components.',
+    key: 'js', // Changed from 'spread'
+    name: 'Spread',
+    description: '.NET & JS spreadsheets',
     iconClass: 'fa-solid fa-table-cells',
-    href: '/products/spreadjs',
+    href: '/products/spread',
   },
   {
-    key: 'wijmo',
+    key: 'wijmo', // This was already correct
     name: 'Wijmo',
     description: 'Fast, flexible JavaScript UI controls for enterprise apps.',
     iconClass: 'fa-solid fa-chart-pie',
     href: '/products/wijmo',
   },
   {
-    key: 'ar',
+    key: 'ar', // Changed from 'activereports'
     name: 'ActiveReports',
-    description: 'Complete .NET and JavaScript reporting solutions.',
+    description: '.NET & JS reporting',
     iconClass: 'fa-solid fa-print',
     href: '/products/activereports',
+  },
+  {
+    key: 'ds', // Changed from 'documents'
+    name: 'Document Solutions',
+    description: 'APIs for docs, PDFs & images',
+    iconClass: 'fa-solid fa-file-lines',
+    href: '/products/documents',
   },
 ];
 
@@ -43,9 +50,9 @@ export default function CoreTechnologies() {
           <p>A comprehensive suite of award-winning components for any platform.</p>
         </div>
         <div className={styles.grid}>
-          {techMap.map((tech) => (
+          {technologies.map((tech) => (
+            // This line now correctly applies a class like .net, .js, etc.
             <Link href={tech.href} key={tech.name} className={`${styles.techCard} ${styles[tech.key]}`}>
-              {/* The icon is now rendered using a reliable <i> tag */}
               <i className={`${tech.iconClass} ${styles.icon}`}></i>
               <h3>{tech.name}</h3>
               <p>{tech.description}</p>

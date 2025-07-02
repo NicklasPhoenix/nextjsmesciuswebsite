@@ -44,7 +44,7 @@ export default function Footer() {
           <div className={styles.linkColumn}>
             <h4>Get The Latest News</h4>
             <p>Stay up to date with blogs, eBooks, events, and whitepapers.</p>
-            <button className={styles.subscribeButton}>SUBSCRIBE</button>
+            <button className="btn btnPrimary">SUBSCRIBE</button>
           </div>
         </div>
       </div>
