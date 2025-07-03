@@ -2,7 +2,6 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './BlueprintCard.module.css';
-import { DotNetTextIcon } from '@/app/solutions/components/techIconGroupsData';
 
 // REVERTED: Using the simple Font Awesome map again.
 const frameworkIconMap: { [key: string]: string } = {
@@ -11,7 +10,9 @@ const frameworkIconMap: { [key: string]: string } = {
   vue: 'fa-brands fa-vuejs',
   winforms: 'fa-brands fa-windows',
   wpf: 'fa-brands fa-windows',
+  // MODIFIED: Use the microchip icon for .NET here as well for consistency
   dotnet: 'fa-solid fa-microchip',
+  net: 'fa-solid fa-microchip',
 };
 
 type Blueprint = {
@@ -35,15 +36,6 @@ const BlueprintCard = React.forwardRef<HTMLAnchorElement, Blueprint>(
         <div className={styles.footer}>
           <div className={styles.frameworks}>
             {frameworks.map((fwKey) => {
-              if (fwKey === 'dotnet' || fwKey === 'net') {
-                return (
-                  <div key={fwKey} className={styles.frameworkIconWrapper}>
-                    {/* MODIFIED: Pass the className from the BlueprintCard's CSS module */}
-                    <DotNetTextIcon className={styles.dotNetTextIcon} />
-                    <span className={styles.tooltip}>.NET</span>
-                  </div>
-                );
-              }
               const framework = frameworkIconMap[fwKey];
               if (!framework) return null;
               const frameworkName = fwKey.charAt(0).toUpperCase() + fwKey.slice(1);

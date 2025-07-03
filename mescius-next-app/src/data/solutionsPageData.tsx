@@ -1,24 +1,26 @@
 import React from 'react';
+// MODIFIED: Removed FaMicrochip, it is not needed.
 import { FaReact, FaAngular, FaVuejs, FaJs, FaMicrosoft, FaCode, FaDesktop, FaMobileAlt } from 'react-icons/fa';
-import { SiDotnet, SiBlazor } from 'react-icons/si';
+import { SiBlazor } from 'react-icons/si';
 
-// Type definitions
+// The missing type definitions
 export interface TechIconItem {
   icon: React.ReactNode;
   name: string;
   filterGroupId: string;
 }
+
 export interface TechIconGroup {
   title: string;
   icons: TechIconItem[];
 }
 
-// Text-based .NET icon
+// ADDED: The text-based icon component is restored.
 export const DotNetTextIcon = ({ className }: { className?: string }) => (
   <span className={className}>.NET</span>
 );
 
-// Icon groups data
+// Icon groups data - this will now work correctly
 const techIconGroups: TechIconGroup[] = [
   {
     title: 'Web & Mobile',
@@ -32,6 +34,7 @@ const techIconGroups: TechIconGroup[] = [
   {
     title: '.NET',
     icons: [
+      // MODIFIED: Reverted to the text-based icon.
       { icon: <DotNetTextIcon className="textIcon" />, name: '.NET', filterGroupId: 'net' },
       { icon: <SiBlazor />, name: 'Blazor', filterGroupId: 'net' },
       { icon: <FaMobileAlt />, name: 'MAUI', filterGroupId: 'net' },
