@@ -6,7 +6,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import styles from './Header.module.css';
 // MODIFIED: Removed FaChevronDown as it is not needed
-import { FaJs, FaMicrosoft, FaDatabase } from 'react-icons/fa';
+import { FaJs, FaMicrosoft, FaDatabase, FaMobileAlt, FaFileInvoice, FaChartPie } from 'react-icons/fa';
 import blueprintsData from '@/data/blueprints.json';
 
 // MODIFIED: The navItems array is updated to use the same promo section for both menus
@@ -14,12 +14,33 @@ const navItems = [
     {
         name: 'Solutions',
         href: '/solutions',
+        // MODIFIED: Replaced the simple list with a categorized structure.
+        // This will require new CSS to create the multi-column layout.
         dropdown: [
-            { name: 'Web & Mobile', desc: 'JS, React, Angular, Vue', href: '/solutions?filter=web', icon: <FaJs /> },
-            { name: '.NET', desc: 'MAUI, Blazor, WPF', href: '/solutions?filter=net', icon: <FaMicrosoft /> },
-            { name: 'Data Tools', desc: 'Reporting & BI', href: '/solutions?filter=data', icon: <FaDatabase /> },
+            {
+                category: 'Web & JavaScript',
+                items: [
+                    { name: 'BI & Analytics Dashboards', desc: 'High-performance web dashboards', href: '/solutions/bi-dashboard', icon: <FaChartPie /> },
+                    { name: 'Web-Based Office Suite', desc: 'Embed spreadsheets & viewers', href: '/solutions/spreadsheet-document-editor', icon: 'fa-file-excel' },
+                    { name: 'Project Management App', desc: 'Interactive Gantt charts for web', href: '/solutions/project-management', icon: 'fa-tasks' },
+                ]
+            },
+            {
+                category: '.NET & Desktop',
+                items: [
+                    { name: 'Automated Financial Reporting', desc: 'Generate invoices & reports', href: '/solutions/financial-reporting', icon: <FaFileInvoice /> },
+                    { name: 'Modernize Desktop Apps', desc: 'Upgrade WinForms & WPF UIs', href: '/solutions/desktop-modernization', icon: 'fa-desktop' },
+                    { name: 'High-Speed Document APIs', desc: 'Process PDFs & Office files', href: '/solutions/document-processing-api', icon: <FaDatabase /> },
+                ]
+            },
+            {
+                category: 'Cross-Platform',
+                items: [
+                    { name: 'Blazor Enterprise Apps', desc: 'Build full-stack LOB apps', href: '/solutions/blazor-enterprise-apps', icon: 'fa-building' },
+                    { name: 'Cross-Platform Data Apps', desc: 'Native mobile & desktop with MAUI', href: '/solutions/cross-platform-data-apps', icon: <FaMobileAlt /> },
+                ]
+            }
         ],
-        // MODIFIED: This now uses the same promo section as Products
         promo: {
             title: 'Get Every Component We Make',
             description: 'Empower your entire team with our Enterprise Universal bundle, including source code and premium support.',
@@ -77,24 +98,66 @@ export default function Header() {
               {item.dropdown && openMenu === item.name && (
                 <div className={styles.megaMenu}>
                   <div className={styles.megaMenuContent}>
-                    <div className={styles.megaMenuGrid}>
-                      {item.dropdown.map((dropdownItem) => (
-                        <Link
-                          href={dropdownItem.href}
-                          key={dropdownItem.name}
-                          className={styles.menuItem}
-                          onClick={() => setOpenMenu(null)} // ADDED: Close menu on click
-                        >
-                          <div className={styles.menuItemIcon}>
-                            {typeof dropdownItem.icon === 'string' ? <i className={`fa-solid ${dropdownItem.icon}`}></i> : dropdownItem.icon}
+                    {/* MODIFIED: Wrapped categories for correct grid layout */}
+                    <div className={styles.categoriesWrapper}>
+                      {'category' in item.dropdown[0] ? (
+                        // Render categorized dropdown (for Solutions)
+                        (item.dropdown as any[]).map(categoryItem => (
+                          <div
+                            key={categoryItem.category}
+                            className={`${styles.megaMenuCategory} ${
+                              categoryItem.category === 'Cross-Platform' ? styles.spanFullWidth : ''
+                            }`}
+                          >
+                            <h4 className={styles.megaMenuCategoryTitle}>{categoryItem.category}</h4>
+                            {categoryItem.items.map((dropdownItem: any) => (
+                              <Link
+                                href={dropdownItem.href}
+                                key={dropdownItem.name}
+                                className={styles.menuItem}
+                                onClick={() => setOpenMenu(null)}
+                              >
+                                <div className={styles.menuItemIcon}>
+                                  {typeof dropdownItem.icon === 'string' ? <i className={`fa-solid ${dropdownItem.icon}`}></i> : dropdownItem.icon}
+                                </div>
+                                <div>
+                                  <span className={styles.menuItemName}>{dropdownItem.name}</span>
+                                  <span className={styles.menuItemDesc}>{dropdownItem.desc}</span>
+                                </div>
+                              </Link>
+                            ))}
                           </div>
-                          <div>
-                            <span className={styles.menuItemName}>{dropdownItem.name}</span>
-                            <span className={styles.menuItemDesc}>{dropdownItem.desc}</span>
-                          </div>
-                        </Link>
-                      ))}
+                        ))
+                      ) : (
+                        // Render simple list dropdown (for Products)
+                        (() => {
+                          const items = item.dropdown as any[];
+                          const midpoint = Math.ceil(items.length / 2);
+                          return [items.slice(0, midpoint), items.slice(midpoint)].map((col, index) => (
+                            <div key={index} className={styles.megaMenuCategory}>
+                              {col.map(dropdownItem => (
+                                <Link
+                                  href={dropdownItem.href}
+                                  key={dropdownItem.name}
+                                  className={styles.menuItem}
+                                  onClick={() => setOpenMenu(null)}
+                                >
+                                  <div className={styles.menuItemIcon}>
+                                    {typeof dropdownItem.icon === 'string' ? <i className={`fa-solid ${dropdownItem.icon}`}></i> : dropdownItem.icon}
+                                  </div>
+                                  <div>
+                                    <span className={styles.menuItemName}>{dropdownItem.name}</span>
+                                    <span className={styles.menuItemDesc}>{dropdownItem.desc}</span>
+                                  </div>
+                                </Link>
+                              ))}
+                            </div>
+                          ));
+                        })()
+                      )}
                     </div>
+
+                    {/* Promo section is now a direct child of the flex container */}
                     {item.promo && (
                       <div className={styles.promoSection}>
                         <h3>{item.promo.title}</h3>
@@ -102,7 +165,7 @@ export default function Header() {
                         <Link
                           href={item.promo.link.href}
                           className={item.promo.link.className || styles.viewAllLink}
-                          onClick={() => setOpenMenu(null)} // ADDED: Close menu on click
+                          onClick={() => setOpenMenu(null)}
                         >
                           {item.promo.link.text}
                         </Link>

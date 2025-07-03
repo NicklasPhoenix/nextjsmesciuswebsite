@@ -93,44 +93,75 @@
   pointer-events: auto; /* Enable interaction */
 }
 
+/* MODIFIED: Correctly implement the two-part flex layout */
 .megaMenuContent {
   display: flex;
-  /* Revert to solid background */
-  background-color: var(--background-light); /* Or a specific white color */
-  /* Remove backdrop-filter */
-  /* backdrop-filter: blur(12px); */
-  /* -webkit-backdrop-filter: blur(12px); */
+  gap: 2rem;
+  width: max-content;
+  max-width: 1200px;
+  background-color: var(--background-light);
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid var(--border-color);
-  overflow: hidden;
+  padding: 2rem;
 }
 
-/* FIX 2: Make the link grid more compact */
-.megaMenuGrid {
+/* MODIFIED: This wrapper now correctly lays out the categories on the left */
+.categoriesWrapper {
   display: grid;
-  /* Change to 2 columns to make this section narrower */
   grid-template-columns: repeat(2, 1fr);
-  gap: 0.5rem;
-  padding: 1.5rem;
-  border-right: 1px solid var(--border-color);
+  gap: 1.5rem 2.5rem; /* row-gap column-gap */
+  flex-grow: 1;
 }
 
-/* FIX 3: Give the promo section more space and emphasis */
+.megaMenuCategory {
+  /* This is now a grid item, no special layout needed */
+}
+
+/* ADDED: This new class makes the target category span both columns */
+.spanFullWidth {
+  grid-column: 1 / -1;
+}
+
 .promoSection {
+  flex-shrink: 0; /* Prevent the promo from shrinking */
+  width: 400px; /* MODIFIED: Increased width for a wider promo section */
   background-color: var(--background-subtle);
-  padding: 2.5rem;
-  width: 550px; /* Increased width */
-  text-align: left;
+  padding: 2rem;
+  border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* REMOVED: justify-content: center; to align content to the top */
 }
-.promoSection h3 { font-size: 1.3rem; font-weight: 700; color: var(--text-dark); margin-bottom: 0.75rem; }
-.promoSection p { font-size: 1rem; margin-bottom: 1.5rem; flex-grow: 1; }
 
+.promoSection h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
 
-.menuItem { display: flex; align-items: center; gap: 1rem; padding: 1rem; border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease; }
+.promoSection p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.promoSection a {
+  align-self: flex-start;
+  margin-top: auto; /* ADDED: Pushes the button to the bottom */
+}
+
+/* ...existing code... */
+
+.menuItem {
+  display: flex;
+  align-items: flex-start; /* Align items to the top */
+  gap: 1rem;
+  padding: 0.75rem; /* Adjusted padding */
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+}
 .menuItem:hover { background-color: var(--background-subtle); }
 .menuItemIcon { font-size: 1.25rem; color: var(--brand-primary); width: 24px; text-align: center; }
 .menuItemName { display: block; font-weight: 600; color: var(--text-dark); }
