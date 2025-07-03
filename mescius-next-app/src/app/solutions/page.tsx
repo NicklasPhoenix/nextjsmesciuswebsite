@@ -1,14 +1,12 @@
 // src/app/solutions/page.tsx
 "use client";
-import { useState, useEffect, useRef } from 'react';
-import BlueprintCard from '@/components/BlueprintCard';
-import blueprints from '@/data/blueprints.json';
+import { useState, useEffect } from 'react';
+import blueprintsData from '@/data/blueprints.json';
 import styles from './solutions.module.css';
-// Import icons
-import { FaReact, FaAngular, FaVuejs, FaJs, FaMicrosoft, FaCode, FaDesktop, FaMobileAlt } from 'react-icons/fa';
-import { SiDotnet, SiBlazor } from 'react-icons/si';
-// Import the new component
+// Import the new components
 import SolutionsHeader from './components/SolutionsHeader';
+import FilterControls from './components/FilterControls';
+import BlueprintGrid from './components/BlueprintGrid';
 
 // Define the Blueprint interface based on your JSON structure
 interface Blueprint {
@@ -20,43 +18,13 @@ interface Blueprint {
   frameworks: string[];
 }
 
-// --- DATA (This can be moved to its own file, e.g., app/solutions/data.ts) ---
-export const solutionGroups = [
+// Data for the main filter buttons. This could also be moved to a central data file.
+const solutionGroups = [
   { id: 'all', label: 'All Solutions' },
   { id: 'web', label: 'Web & Mobile', technologies: ['js', 'wijmo', 'react', 'angular', 'vue'] },
   { id: 'net', label: '.NET', technologies: ['net', 'winforms', 'wpf', 'dotnet', 'ar', 'blazor', 'maui'] },
   { id: 'data', label: 'Data Tools', technologies: ['ds'] }
 ];
-
-export const DotNetTextIcon = () => <span className={styles.textIcon}>.NET</span>;
-
-export const techIconGroups = [
-  {
-    title: 'Web & Mobile',
-    icons: [
-      { icon: <FaJs />, name: 'JavaScript', filterGroupId: 'web' },
-      { icon: <FaReact />, name: 'React', filterGroupId: 'web' },
-      { icon: <FaAngular />, name: 'Angular', filterGroupId: 'web' },
-      { icon: <FaVuejs />, name: 'Vue', filterGroupId: 'web' },
-    ]
-  },
-  {
-    title: '.NET',
-    icons: [
-      { icon: <DotNetTextIcon />, name: '.NET', filterGroupId: 'net' },
-      { icon: <SiBlazor />, name: 'Blazor', filterGroupId: 'net' },
-      { icon: <FaMobileAlt />, name: 'MAUI', filterGroupId: 'net' },
-      { icon: <FaDesktop />, name: 'WPF', filterGroupId: 'net' },
-    ]
-  },
-  {
-    title: '', // Remove the "View All" title for a cleaner look
-    icons: [
-       { icon: <FaCode />, name: 'All Solutions', filterGroupId: 'all' },
-    ]
-  }
-];
-// --- END OF DATA ---
 
 export default function SolutionsPage() {
   const [mainFilter, setMainFilter] = useState<string>('all');
@@ -64,11 +32,10 @@ export default function SolutionsPage() {
   const [activeIconName, setActiveIconName] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [visibleBlueprints, setVisibleBlueprints] = useState<Blueprint[]>([]);
-  const blueprintsRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    let filtered = blueprints;
-    const activeFilterId = iconFilter || mainFilter; // Use iconFilter if it exists, otherwise use mainFilter
+    let filtered: Blueprint[] = blueprintsData;
+    const activeFilterId = iconFilter || mainFilter;
 
     // 1. Filter by the active solution group
     if (activeFilterId !== 'all') {
@@ -118,30 +85,16 @@ export default function SolutionsPage() {
         onIconFilterClick={handleIconFilterClick}
       />
 
-      <div className={styles.filters}>
-        {/* This can be the FilterControls component */}
-        {solutionGroups.map(group => (
-          <button
-            key={group.id}
-            className={mainFilter === group.id && !iconFilter ? styles.active : ''}
-            onClick={() => handleMainFilterClick(group.id)}
-          >
-            {group.label}
-          </button>
-        ))}
-      </div>
+      <FilterControls
+        solutionGroups={solutionGroups}
+        currentFilter={mainFilter}
+        onFilterClick={handleMainFilterClick}
+        isIconFilterActive={!!iconFilter}
+      />
 
-      <div className={styles.blueprintsGrid} ref={blueprintsRef}>
-        {/* This can be the BlueprintGrid component */}
-        {visibleBlueprints.length > 0 ? (
-          visibleBlueprints.map(bp => <BlueprintCard key={bp.id} {...bp} />)
-        ) : (
-          <div className={styles.emptyState}>
-            <h3>No Blueprints Found</h3>
-            <p>Try adjusting your search or filter criteria.</p>
-          </div>
-        )}
-      </div>
+      <BlueprintGrid
+        blueprints={visibleBlueprints}
+      />
     </main>
   );
 }

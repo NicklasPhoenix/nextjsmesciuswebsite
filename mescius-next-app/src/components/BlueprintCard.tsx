@@ -1,4 +1,5 @@
 // src/components/BlueprintCard.tsx
+import React from 'react';
 import Link from 'next/link';
 import styles from './BlueprintCard.module.css';
 import { DotNetTextIcon } from '@/app/solutions/components/techIconGroupsData';
@@ -20,42 +21,48 @@ type Blueprint = {
   frameworks: string[];
 };
 
-export default function BlueprintCard({ href, product, title, frameworks }: Blueprint) {
-  return (
-    <Link href={href} className={`${styles.card} ${styles[product] || ''}`}>
-      <div className={styles.content}>
-        {/* NEW: A smart banner-style tag for the product */}
-        <span className={styles.productTag}>{product}</span>
-        <h3 className={styles.title}>{title}</h3>
-      </div>
+// MODIFIED: Wrap the component with React.forwardRef
+const BlueprintCard = React.forwardRef<HTMLAnchorElement, Blueprint>(
+  ({ href, product, title, frameworks }, ref) => {
+    return (
+      <Link href={href} className={`${styles.card} ${styles[product] || ''}`} ref={ref}>
+        <div className={styles.content}>
+          {/* NEW: A smart banner-style tag for the product */}
+          <span className={styles.productTag}>{product}</span>
+          <h3 className={styles.title}>{title}</h3>
+        </div>
 
-      <div className={styles.footer}>
-        <div className={styles.frameworks}>
-          {frameworks.map((fwKey) => {
-            if (fwKey === 'dotnet' || fwKey === 'net') {
+        <div className={styles.footer}>
+          <div className={styles.frameworks}>
+            {frameworks.map((fwKey) => {
+              if (fwKey === 'dotnet' || fwKey === 'net') {
+                return (
+                  <div key={fwKey} className={styles.frameworkIconWrapper}>
+                    {/* MODIFIED: Pass the className from the BlueprintCard's CSS module */}
+                    <DotNetTextIcon className={styles.dotNetTextIcon} />
+                    <span className={styles.tooltip}>.NET</span>
+                  </div>
+                );
+              }
+              const framework = frameworkIconMap[fwKey];
+              if (!framework) return null;
+              const frameworkName = fwKey.charAt(0).toUpperCase() + fwKey.slice(1);
               return (
                 <div key={fwKey} className={styles.frameworkIconWrapper}>
-                  {/* MODIFIED: Pass the className from the BlueprintCard's CSS module */}
-                  <DotNetTextIcon className={styles.dotNetTextIcon} />
-                  <span className={styles.tooltip}>.NET</span>
+                  <i className={`${framework} ${styles.frameworkIcon}`} aria-label={frameworkName}></i>
+                  <span className={styles.tooltip}>{frameworkName}</span>
                 </div>
               );
-            }
-            const framework = frameworkIconMap[fwKey];
-            if (!framework) return null;
-            const frameworkName = fwKey.charAt(0).toUpperCase() + fwKey.slice(1);
-            return (
-              <div key={fwKey} className={styles.frameworkIconWrapper}>
-                <i className={`${framework} ${styles.frameworkIcon}`} aria-label={frameworkName}></i>
-                <span className={styles.tooltip}>{frameworkName}</span>
-              </div>
-            );
-          })}
+            })}
+          </div>
+          <div className={styles.arrowLink}>
+            <span>→</span>
+          </div>
         </div>
-        <div className={styles.arrowLink}>
-          <span>→</span>
-        </div>
-      </div>
-    </Link>
-  );
-}
+      </Link>
+    );
+  }
+);
+
+BlueprintCard.displayName = 'BlueprintCard'; // Good practice for debugging
+export default BlueprintCard;
