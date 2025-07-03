@@ -13,16 +13,14 @@ const frameworkIconMap: { [key: string]: string } = {
 };
 
 export default function BlueprintCard({ href, product, title, excerpt, frameworks }: Blueprint) {
+  // The main change is simplifying the structure and class names
   return (
     <Link href={href} className={`${styles.card} ${styles[product] || ''}`}>
-      <div className={styles.cardHeader}>
-        <span className={styles.tag}>{product.toUpperCase()}</span>
-      </div>
-      <div className={styles.cardBody}>
+      <div className={styles.content}>
         <h3 className={styles.title}>{title}</h3>
         <p className={styles.excerpt}>{excerpt}</p>
       </div>
-      <div className={styles.cardFooter}>
+      <div className={styles.footer}>
         <div className={styles.frameworks}>
           {frameworks.map((fwKey) => {
             const framework = frameworkIconMap[fwKey];
@@ -34,6 +32,7 @@ export default function BlueprintCard({ href, product, title, excerpt, framework
           View Blueprint <span>→</span>
         </div>
       </div>
+      <span className={styles.tag}>{product}</span>
     </Link>
   );
 }

@@ -2,82 +2,108 @@
 .card {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  background-color: var(--background-light);
-  border-radius: 12px;
+  background-color: #fff; /* Use a clean white background */
+  border-radius: 16px; /* Softer, more modern radius */
   border: 1px solid var(--border-color);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.04);
   color: var(--text-light);
   text-decoration: none;
-  transition: all 0.25s ease-in-out;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   overflow: hidden;
-  cursor: pointer;
+  position: relative; /* Needed for the absolute positioned tag */
+  height: 100%;
 }
 
 .card:hover {
-  /* Remove or comment out the translateY: */
-  /* transform: translateY(-6px); */
-  box-shadow: 0 15px 30px -5px rgba(0,0,0,0.1);
+  transform: translateY(-8px); /* More noticeable lift effect */
+  text-decoration: none;
 }
 
-.cardHeader {
-  padding: 0.5rem 1.5rem;
-  background-image: linear-gradient(to right, rgba(255,255,255,0.2), rgba(255,255,255,0));
-}
+/* --- Product-specific Glow Effect on Hover --- */
+.net:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(214, 86, 76, 0.3); }
+.js:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(128, 155, 89, 0.3); }
+.wijmo:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(72, 169, 197, 0.3); }
+.ar:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(234, 137, 57, 0.3); }
+.ds:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(90, 126, 158, 0.3); }
 
-.tag {
-  font-size: 0.8rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  color: white;
-}
 
-.net .cardHeader { background-color: var(--product-net); }
-.js .cardHeader { background-color: var(--product-js); }
-.wijmo .cardHeader { background-color: var(--product-wijmo); }
-.ds .cardHeader { background-color: var(--product-ds); }
-.ar .cardHeader { background-color: var(--product-ar); }
-
-.cardBody {
-  padding: 1.5rem;
+/* --- New Content and Footer Layout --- */
+.content {
+  padding: 2rem;
   flex-grow: 1;
-  display: flex;
-  flex-direction: column;
 }
 
 .title {
-  font-size: 1.3rem;
+  font-size: 1.5rem; /* Larger, more prominent title */
   font-weight: 700;
   color: var(--text-dark);
   margin: 0 0 0.75rem 0;
-  line-height: 1.4;
+  line-height: 1.3;
 }
 
 .excerpt {
   font-size: 1rem;
-  margin: 0;
+  line-height: 1.6;
+  color: var(--text-light);
 }
 
-.cardFooter {
+.footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1rem 2rem;
   border-top: 1px solid var(--border-color);
-  margin-top: 1.5rem;
+  background-color: var(--background-subtle); /* Subtle background for footer */
 }
 
-.frameworks { display: flex; gap: 0.75rem; }
-.frameworkIcon { font-size: 1.5rem; color: #cbd5e0; }
+.frameworks {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.frameworkIcon {
+  font-size: 1.5rem;
+  color: #9ca3af; /* Muted icon color */
+  transition: color 0.2s ease;
+}
+
+.card:hover .frameworkIcon {
+  color: var(--text-dark);
+}
 
 .arrowLink {
   font-weight: 600;
   color: var(--brand-primary);
   display: flex;
   align-items: center;
-  text-decoration: none !important;
+  gap: 0.5rem;
 }
 
-.arrowLink span { transition: transform 0.2s ease; margin-left: 0.5rem; }
-.card:hover .arrowLink span { transform: translateX(5px); }
+.arrowLink span {
+  transition: transform 0.2s ease;
+}
+
+.card:hover .arrowLink span {
+  transform: translateX(5px);
+}
+
+/* --- New Product Tag Styling --- */
+.tag {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px; /* Pill shape */
+}
+
+/* Apply product colors to the new tag */
+.net .tag { background-color: var(--product-net); }
+.js .tag { background-color: var(--product-js); }
+.wijmo .tag { background-color: var(--product-wijmo); }
+.ar .tag { background-color: var(--product-ar); }
+.ds .tag { background-color: var(--product-ds); }
