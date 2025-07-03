@@ -83,7 +83,15 @@ export default function Header() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`} onMouseLeave={() => setOpenMenu(null)}>
       <div className={styles.container}>
         <Link href="/">
-          <Image src="https://cdn.mescius.io/umb/media/pujnxfci/mescuis-logo-horiz.svg" alt="Mescius Logo" width={150} height={36}/>
+          {/* The <a> tag is no longer needed for Link children in recent Next.js versions */}
+          <Image
+            src="https://cdn.mescius.io/umb/media/pujnxfci/mescuis-logo-horiz.svg"
+            alt="Mescius Logo"
+            width={150}
+            height={36}
+            // ADDED: This className connects the logo to its styles
+            className={styles.logo}
+          />
         </Link>
         <nav className={styles.nav}>
           {navItems.map((item) => (

@@ -1,9 +1,11 @@
 /* src/components/Footer.module.css */
+
+/* MODIFIED: Complete overhaul with brighter, high-contrast colors */
 .footer {
-  background-color: var(--background-subtle);
-  color: var(--text-light);
-  padding: 5rem 0 2rem 0;
-  border-top: 1px solid var(--border-color);
+  background-color: #111827; /* Dark Slate */
+  /* MODIFIED: Use a much lighter gray for all base text for readability */
+  color: #d1d5db; /* Tailwind gray-300 */
+  padding: 4rem 0;
 }
 
 .container {
@@ -12,49 +14,63 @@
   padding: 0 1.5rem;
 }
 
-/* FIX for the wrapping layout */
+/* MODIFIED: Updated grid to remove bottom border and adjust layout */
 .grid {
   display: grid;
-  /* Explicitly define 4 columns, giving the first more space */
-  grid-template-columns: 2fr 1fr 1fr 1.5fr;
-  gap: 2rem;
-  padding-bottom: 3rem;
-  border-bottom: 1px solid var(--border-color);
-  margin-bottom: 2rem;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr; /* Adjusted column ratios */
+  gap: 2rem 3rem; /* row-gap column-gap */
 }
 
 .aboutColumn {
-  padding-right: 2rem;
-  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
 }
 
 .footerLogo {
-  filter: grayscale(1) brightness(0.5);
+  /* MODIFIED: Invert the color of the SVG to make it white on the dark background */
+  filter: brightness(0) invert(1);
   margin-bottom: 1.5rem;
+  align-self: flex-start; /* Ensure logo doesn't stretch */
+  /* ADDED: Transition for the hover effect */
+  transition: transform 0.3s ease;
 }
 
-.linkColumn h4 {
-  color: var(--text-dark);
+/* ADDED: Subtle scale effect on hover */
+.footerLogo:hover {
+  transform: scale(1.05);
+}
+
+/* MODIFIED: Style for the copyright text inside the about column */
+.copyrightText {
+  font-size: 0.8rem;
+  line-height: 1.5;
+  /* MODIFIED: Use a slightly less bright gray for secondary text */
+  color: #9ca3af; /* Tailwind gray-400 */
+}
+
+.linkColumn h4,
+.newsColumn h4 {
+  color: #fff; /* Keep titles bright white */
   font-weight: 600;
   margin-bottom: 1.5rem;
-  font-size: 1rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-/* FIX for the boring link list */
 .linkColumn a {
   display: block;
   margin-bottom: 1rem;
-  color: var(--text-light);
+  /* MODIFIED: Use the new lighter gray for links */
+  color: #d1d5db;
   text-decoration: none;
   font-size: 0.9rem;
-  font-weight: 500;
   transition: all 0.2s ease;
 }
 
-/* New link hover effect: No underline, changes color and moves slightly */
 .linkColumn a:hover {
-  color: var(--brand-primary);
-  text-decoration: none;
+  /* MODIFIED: Hover to bright white for maximum contrast */
+  color: #fff;
   transform: translateX(4px);
 }
 
@@ -64,45 +80,74 @@
 }
 
 .socialIcons a {
-  font-size: 1rem;
-  color: var(--text-light);
+  font-size: 0.9rem;
+  /* MODIFIED: Use the new lighter gray for icons */
+  color: #d1d5db;
   width: 36px;
   height: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--border-color);
+  background-color: rgba(255, 255, 255, 0.08);
   border-radius: 50%;
   transition: all 0.2s ease;
 }
 
 .socialIcons a:hover {
+  /* This hover effect is good: the icon becomes white on a purple background */
   background-color: var(--brand-primary);
   color: white;
+  transform: translateY(-2px);
 }
 
-.copyright {
-  text-align: center;
-  font-size: 0.85rem;
-  color: #a0aec0;
+/* ADDED: Styles for the new newsletter column */
+.newsColumn {
+  font-size: 0.9rem;
+  line-height: 1.6;
 }
 
-/* New media query to handle all smaller screens */
-@media (max-width: 900px) {
+.newsColumn p {
+  margin-bottom: 1.5rem;
+}
+
+/* ADDED: Styles for the subscribe button */
+.subscribeButton {
+  background: linear-gradient(90deg, #8b5cf6, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.subscribeButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(107, 114, 241, 0.4);
+}
+
+/* MODIFIED: Updated responsive breakpoints for the new layout */
+@media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr; /* 2x2 grid on tablets */
   }
-  .aboutColumn {
-    grid-column: span 2; /* Span full width */
-  }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .grid {
     grid-template-columns: 1fr; /* Single column on mobile */
-    text-align: left; /* Revert to left-align on mobile stack */
+    text-align: center;
   }
-  .aboutColumn {
-    grid-column: span 1; /* Reset span */
+  .aboutColumn, .linkColumn, .newsColumn {
+    align-items: center;
+  }
+  .footerLogo {
+    align-self: center;
+  }
+  .socialIcons {
+    justify-content: center;
   }
 }
