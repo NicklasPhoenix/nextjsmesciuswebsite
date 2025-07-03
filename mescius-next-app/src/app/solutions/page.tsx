@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import blueprintsData from '@/data/blueprints.json';
 import styles from './solutions.module.css';
+// MODIFIED: Import the 'Variants' type from framer-motion
+import { motion, Variants } from 'framer-motion';
+
 // Import the new components
 import SolutionsHeader from './components/SolutionsHeader';
 import FilterControls from './components/FilterControls';
@@ -76,25 +79,52 @@ export default function SolutionsPage() {
     }
   };
 
+  // MODIFIED: Explicitly type the variants objects using the 'Variants' type
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
+  };
+
   return (
-    <main className={styles.main}>
-      <SolutionsHeader
-        searchTerm={searchTerm}
-        onSearchChange={setSearchTerm}
-        activeIconName={activeIconName}
-        onIconFilterClick={handleIconFilterClick}
-      />
+    <motion.main
+      className={styles.main}
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      {/* This structure is correct. The explicit types above should fix the error. */}
+      <motion.div variants={itemVariants}>
+        <SolutionsHeader
+          searchTerm={searchTerm}
+          onSearchChange={setSearchTerm}
+          activeIconName={activeIconName}
+          onIconFilterClick={handleIconFilterClick}
+        />
+      </motion.div>
 
-      <FilterControls
-        solutionGroups={solutionGroups}
-        currentFilter={mainFilter}
-        onFilterClick={handleMainFilterClick}
-        isIconFilterActive={!!iconFilter}
-      />
+      <motion.div variants={itemVariants}>
+        <FilterControls
+          solutionGroups={solutionGroups}
+          currentFilter={mainFilter}
+          onFilterClick={handleMainFilterClick}
+          isIconFilterActive={!!iconFilter}
+        />
+      </motion.div>
 
-      <BlueprintGrid
-        blueprints={visibleBlueprints}
-      />
-    </main>
+      <motion.div variants={itemVariants}>
+        <BlueprintGrid
+          blueprints={visibleBlueprints}
+        />
+      </motion.div>
+    </motion.main>
   );
 }

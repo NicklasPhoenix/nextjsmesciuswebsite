@@ -4,6 +4,7 @@ import Link from 'next/link';
 import BlueprintCard from './BlueprintCard';
 import blueprints from '../data/blueprints.json';
 import styles from './Hero.module.css';
+import React from 'react';
 
 export default function Hero() {
   // Feature the first, most important blueprint.
