@@ -30,7 +30,7 @@ const BlueprintGrid = ({ blueprints }: BlueprintGridProps) => {
               exit={{ opacity: 0, scale: 0.8 }}
               transition={{ duration: 0.3 }}
             >
-              <BlueprintCard blueprint={blueprint} />
+              <BlueprintCard {...blueprint} />
             </motion.div>
           ))
         ) : (

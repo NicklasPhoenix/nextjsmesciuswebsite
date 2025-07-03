@@ -4,6 +4,9 @@ import Link from 'next/link';
 import styles from './BlueprintCard.module.css';
 import { FaReact, FaAngular, FaVuejs, FaJs, FaWindows, FaDesktop, FaMobileAlt } from 'react-icons/fa';
 import { SiBlazor } from 'react-icons/si';
+import {
+  BsPlusCircleFill // Import a plus icon for bundles
+} from 'react-icons/bs';
 
 // Define the Blueprint interface
 interface Blueprint {
@@ -28,18 +31,25 @@ const frameworkIconMap: { [key: string]: { icon: React.ReactNode; name: string }
   dotnet: { icon: <span className={styles.dotNetTextIcon}>.NET</span>, name: '.NET' },
 };
 
-const BlueprintCard = ({ blueprint }: { blueprint: Blueprint }) => {
+export default function BlueprintCard(props: Blueprint) {
+  const { id, href, product, title, excerpt, frameworks } = props;
+
+  // Logic to determine if the solution is a bundle
+  const isBundle = title.toLowerCase().includes('suite') || title.toLowerCase().includes('api');
+
   return (
-    <Link href={blueprint.href} className={`${styles.card} ${styles[blueprint.product]}`}>
-      <div className={styles.content}>
-        <span className={styles.productTag}>{blueprint.product}</span>
-        <h3 className={styles.title}>{blueprint.title}</h3>
-        {/* REMOVED: The <p> tag for the excerpt is now gone. */}
+    <Link href={href} className={`${styles.card} ${styles[product]}`}>
+      {/* MODIFIED: Use the tag container */}
+      <div className={styles.tagContainer}>
+        <span className={styles.productTag}>{product}</span>
+        {/* ADDED: Conditionally render the suite tag */}
+        {isBundle && <span className={styles.suiteTag}>Suite</span>}
       </div>
+      <h3 className={styles.title}>{title}</h3>
       <div className={styles.footer}>
         <div className={styles.frameworks}>
           {/* MODIFIED: Ensure the correct structure for hover effects */}
-          {blueprint.frameworks.map((fwId) => {
+          {frameworks.map((fwId) => {
             const iconData = frameworkIconMap[fwId];
             if (!iconData) return null;
 
@@ -56,5 +66,3 @@ const BlueprintCard = ({ blueprint }: { blueprint: Blueprint }) => {
     </Link>
   );
 };
-
-export default BlueprintCard;

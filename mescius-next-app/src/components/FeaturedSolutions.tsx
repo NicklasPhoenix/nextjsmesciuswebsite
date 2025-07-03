@@ -17,7 +17,7 @@ const FeaturedSolutions = () => {
         </div>
         <div className={styles.grid}>
           {featured.map(blueprint => (
-            <BlueprintCard key={blueprint.id} blueprint={blueprint} />
+            <BlueprintCard key={blueprint.id} {...blueprint} />
           ))}
         </div>
         {/* ADDED: Container for the button below the grid */}

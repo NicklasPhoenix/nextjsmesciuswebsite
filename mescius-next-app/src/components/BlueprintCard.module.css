@@ -26,10 +26,19 @@
 .card.wijmo { background-color: #e6f6ff; }
 .card.ar { background-color: #fff4e8; }
 .card.ds { background-color: #f0f2ff; }
+/* CONFIRMED: Blazor-specific background color */
+.card.blazor { background-color: #edf5ff; }
+
+.tagContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem; /* Space between tags and title */
+}
 
 .productTag {
   display: inline-block;
-  align-self: flex-start; /* Align tag to the left */
+  /* REMOVED: margin-bottom is now on the container */
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
@@ -37,7 +46,18 @@
   color: white;
   padding: 0.3rem 0.85rem;
   border-radius: 999px; /* Pill shape */
-  margin-bottom: 1rem; /* Space between tag and title */
+}
+
+/* MODIFIED: A secondary tag for bundles/suites that adapts to the product color */
+.suiteTag {
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 999px;
+  background-color: rgba(255, 255, 255, 0.6); /* A semi-transparent white to lift it off the background */
+  border: 1.5px solid; /* Default border, color will be overridden */
 }
 
 /* Apply product colors to the tag banner */
@@ -46,6 +66,33 @@
 .ar .productTag { background-color: var(--product-ar); }
 .ds .productTag { background-color: var(--product-ds); }
 .wijmo .productTag { background-color: var(--product-wijmo); }
+.blazor .productTag { background-color: var(--product-blazor); }
+
+/* ADDED: Color overrides for the suite tag to match the product */
+.net .suiteTag {
+  color: var(--product-net);
+  border-color: var(--product-net);
+}
+.js .suiteTag {
+  color: var(--product-js);
+  border-color: var(--product-js);
+}
+.ar .suiteTag {
+  color: var(--product-ar);
+  border-color: var(--product-ar);
+}
+.ds .suiteTag {
+  color: var(--product-ds);
+  border-color: var(--product-ds);
+}
+.wijmo .suiteTag {
+  color: var(--product-wijmo);
+  border-color: var(--product-wijmo);
+}
+.blazor .suiteTag {
+  color: var(--product-blazor);
+  border-color: var(--product-blazor);
+}
 
 .title {
   /* MODIFIED: Simplified for list view */

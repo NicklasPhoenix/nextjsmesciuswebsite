@@ -1,90 +1,74 @@
 [
   {
-    "id": "interactive-finance",
-    "href": "/solutions/interactive-finance",
-    "product": "js",
-    "title": "Build Real-Time Finance Apps",
-    "excerpt": "Building secure, collaborative financial models that handle real-time data is complex. Use our pre-built, high-performance components.",
-    "frameworks": ["react", "angular", "vue"]
-  },
-  {
-    "id": "hyperspeed-analytics",
-    "href": "/solutions/hyperspeed-analytics",
+    "id": "bi-dashboard-suite-js",
+    "href": "/solutions/bi-dashboard",
     "product": "wijmo",
-    "title": "Dashboards Slow with Big Data?",
-    "excerpt": "Standard charts buckle under the load of millions of data points. Deliver BI dashboards that process massive datasets instantly.",
+    "title": "JavaScript BI & Analytics Dashboard",
+    "excerpt": "Build lightning-fast dashboards that handle millions of data points. Combine an interactive datagrid with advanced charts to uncover insights in real-time.",
     "frameworks": ["react", "angular", "vue"]
   },
   {
-    "id": "enterprise-reporting",
-    "href": "/solutions/enterprise-reporting",
+    "id": "financial-reporting-net",
+    "href": "/solutions/financial-reporting",
     "product": "ar",
-    "title": "Automate Pixel-Perfect Reports",
-    "excerpt": "Generating consistent invoices, statements, and compliance documents is a headache. Automate it from any data source.",
-    "frameworks": ["dotnet", "blazor"]
+    "title": "Automated Financial Reporting Suite (.NET)",
+    "excerpt": "Generate and export complex financial statements and invoices. Combine powerful reporting with seamless PDF and Excel document management.",
+    "frameworks": ["dotnet", "blazor", "winforms", "wpf"]
   },
   {
-    "id": "document-management",
-    "href": "/solutions/document-management",
-    "product": "ds",
-    "title": "Manage PDFs & Office Files in Code",
-    "excerpt": "Integrating document functionality requires multiple libraries. Use one powerful API to view, edit, and convert files in your app.",
-    "frameworks": ["dotnet"]
-  },
-  {
-    "id": "excel-like-data-entry",
-    "href": "/solutions/excel-like-data-entry",
+    "id": "web-spreadsheet-document-editor",
+    "href": "/solutions/spreadsheet-document-editor",
     "product": "js",
-    "title": "Embed Excel-like Editing in Your Web App",
-    "excerpt": "Users demand powerful data entry features like Excel, but building them is a major project. Embed a full-featured spreadsheet for complex data editing and calculations.",
-    "frameworks": ["react", "angular", "vue"]
+    "title": "Embed a Web-Based Office Suite",
+    "excerpt": "Empower users with Excel-like spreadsheet editing and a robust document viewer for PDFs and Office files, all within your web application.",
+    "frameworks": ["react", "angular", "vue", "js"]
   },
   {
-    "id": "cross-platform-native-apps",
-    "href": "/solutions/cross-platform-native-apps",
+    "id": "cross-platform-data-apps-maui",
+    "href": "/solutions/cross-platform-data-apps",
     "product": "net",
-    "title": "Build Native Apps for Any Platform",
-    "excerpt": "Developing for iOS, Android, and Windows separately drains resources. Use one .NET codebase with our UI controls to build beautiful, native apps for every device.",
+    "title": "Cross-Platform Data Apps with .NET MAUI",
+    "excerpt": "Build native mobile and desktop apps that display and manage business data. Use powerful datagrids and input controls for a single .NET MAUI codebase.",
     "frameworks": ["maui"]
   },
   {
-    "id": "interactive-data-grids",
-    "href": "/solutions/interactive-data-grids",
-    "product": "wijmo",
-    "title": "Display Millions of Records Instantly",
-    "excerpt": "Your data grid freezes when loading large datasets. Use a virtualized datagrid that provides a responsive experience with millions of rows.",
-    "frameworks": ["blazor", "react", "vue"]
-  },
-  {
-    "id": "vue-dashboard",
-    "href": "/solutions/vue-dashboard",
+    "id": "project-management-gantt-js",
+    "href": "/solutions/project-management",
     "product": "js",
-    "title": "Vue.js Interactive Dashboard",
-    "excerpt": "Build a responsive, data-rich dashboard application with Vue.js and Wijmo controls.",
-    "frameworks": ["vue", "js"]
+    "title": "Interactive Project Management App (Web)",
+    "excerpt": "Develop a complete project planning solution. Embed a feature-rich Gantt chart to manage tasks, dependencies, and resources in your web app.",
+    "frameworks": ["react", "angular", "vue"]
   },
   {
-    "id": "maui-mobile-app",
-    "href": "/solutions/maui-mobile-app",
-    "product": "net",
-    "title": ".NET MAUI Cross-Platform App",
-    "excerpt": "Create a native mobile application that works across iOS, Android and Windows with a single .NET MAUI codebase.",
-    "frameworks": ["maui", "dotnet"]
+    "id": "document-processing-backend",
+    "href": "/solutions/document-processing-api",
+    "product": "ds",
+    "title": "High-Speed Document Processing API (.NET)",
+    "excerpt": "Create, load, and manipulate complex PDF and Office documents on the server. A high-performance API for all your backend document workflows.",
+    "frameworks": ["dotnet"]
   },
   {
-    "id": "winforms-desktop",
-    "href": "/solutions/winforms-desktop",
+    "id": "legacy-desktop-modernization-net",
+    "href": "/solutions/desktop-modernization",
     "product": "net",
-    "title": "WinForms Desktop Application",
-    "excerpt": "Build powerful Windows desktop applications with familiar .NET WinForms technology and modern UI controls.",
-    "frameworks": ["winforms", "dotnet"]
+    "title": "Modernize .NET Desktop Applications",
+    "excerpt": "Upgrade your legacy WinForms & WPF applications with modern, high-performance UI controls for data management and visualization.",
+    "frameworks": ["winforms", "wpf"]
   },
   {
-    "id": "wpf-enterprise",
-    "href": "/solutions/wpf-enterprise",
-    "product": "net",
-    "title": "WPF Enterprise Application",
-    "excerpt": "Create sophisticated Windows applications with WPF's powerful UI framework and advanced data visualization.",
-    "frameworks": ["wpf", "dotnet"]
+    "id": "blazor-enterprise-apps",
+    "href": "/solutions/blazor-enterprise-apps",
+    "product": "blazor",
+    "title": "Build Full-Stack Enterprise Apps with Blazor",
+    "excerpt": "Create powerful, data-heavy line-of-business applications using our complete suite of native Blazor UI components, from grids to charts.",
+    "frameworks": ["blazor"]
+  },
+  {
+    "id": "web-based-lab-notebook",
+    "href": "/solutions/lab-notebook",
+    "product": "js",
+    "title": "Digital Lab & Scientific Notebook (Web)",
+    "excerpt": "Combine a powerful spreadsheet with advanced data visualization tools to create interactive lab notebooks and research data apps.",
+    "frameworks": ["react", "angular", "vue", "js"]
   }
 ]

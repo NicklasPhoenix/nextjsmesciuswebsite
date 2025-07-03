@@ -21,12 +21,20 @@ const filters = [
   { key: 'wijmo', label: 'Wijmo', frameworks: ['wijmo'] },
   { key: 'ds', label: 'Documents', frameworks: ['documents'] },
   { key: 'ar', label: 'Reporting', frameworks: ['reporting'] },
+  // Add individual framework filters for better direct access
+  { key: 'vue', label: 'Vue', frameworks: ['vue'] },
+  { key: 'react', label: 'React', frameworks: ['react'] },
+  { key: 'angular', label: 'Angular', frameworks: ['angular'] },
+  { key: 'maui', label: 'MAUI', frameworks: ['maui'] },
+  { key: 'blazor', label: 'Blazor', frameworks: ['blazor'] },
+  { key: 'winforms', label: 'WinForms', frameworks: ['winforms'] },
+  { key: 'wpf', label: 'WPF', frameworks: ['wpf'] }
 ];
 
 export default function SolutionsExplorer() {
   const [activeFilter, setActiveFilter] = useState('all');
 
-  // Filter blueprints by matching frameworks, unless "all".
+  // Filter blueprints by matching frameworks, unless "all"
   const filteredBlueprints =
     activeFilter === 'all'
       ? typedBlueprintsData
@@ -34,7 +42,7 @@ export default function SolutionsExplorer() {
           b.frameworks.some((fw) =>
             filters
               .find((f) => f.key === activeFilter)
-              ?.frameworks?.includes(fw)
+              ?.frameworks?.includes(fw.toLowerCase())
           )
         );
 

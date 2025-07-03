@@ -100,3 +100,123 @@
   border-color: white;
   transform: translateY(-3px);
 }
+
+.wrapper {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin: 4rem auto;
+  max-width: 1100px;
+  border-radius: 24px;
+  color: white;
+  /* REMOVED: The background is now handled by framer-motion in the component */
+  position: relative;
+  overflow: hidden; /* To contain decorative elements */
+  box-shadow: 0 10px 30px -10px rgba(106, 17, 203, 0.4);
+  transition: box-shadow 0.3s ease-in-out; /* Keep transition for shadow */
+}
+
+.wrapper:hover {
+  /* The transform is handled by Framer Motion */
+  box-shadow: 0 12px 35px -8px rgba(106, 17, 203, 0.5);
+  /* REMOVED: The background hover effect is no longer needed here */
+}
+
+/* ADDED: Subtle decorative circles from the design */
+.wrapper::before,
+.wrapper::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.07);
+  border-radius: 50%;
+  z-index: 0;
+  transition: all 0.4s ease;
+  /* ADDED: Set initial scale for the animation */
+  transform: scale(1);
+}
+
+/* ADDED: Animate the decorative circles on hover for a dynamic feel */
+.wrapper:hover::before,
+.wrapper:hover::after {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.wrapper::before {
+  width: 250px;
+  height: 250px;
+  top: -60px;
+  left: -90px;
+}
+
+.wrapper::after {
+  width: 350px;
+  height: 350px;
+  bottom: -140px;
+  right: -120px;
+}
+
+/* Ensure content is above decorative circles */
+.content, .actions {
+  position: relative;
+  z-index: 1;
+}
+
+.content h2 {
+  font-size: 2.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white; /* Explicitly set color */
+}
+
+.content p {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.9); /* Softer white */
+  max-width: 650px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* These button styles will need to be applied to the Link components in CallToAction.tsx */
+/* Example: <Link href="..." className={styles.primaryButton}>Request a Blueprint</Link> */
+.primaryButton,
+.secondaryButton {
+  display: inline-block;
+  padding: 0.8rem 1.75rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none;
+}
+
+.primaryButton {
+  background-color: white;
+  color: #6a11cb; /* Purple text to match the gradient */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  transform: translateY(-3px);
+}

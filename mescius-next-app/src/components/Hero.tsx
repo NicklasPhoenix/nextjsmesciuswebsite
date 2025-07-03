@@ -35,7 +35,7 @@ export default function Hero() {
         <div className={styles.visual}>
           <div className={styles.cardWrapper}>
             {/* MODIFIED: Pass the blueprint data as a single 'blueprint' prop to match the updated component */}
-            <BlueprintCard blueprint={featuredBlueprint} />
+            <BlueprintCard {...featuredBlueprint} />
           </div>
         </div>
       </div>
