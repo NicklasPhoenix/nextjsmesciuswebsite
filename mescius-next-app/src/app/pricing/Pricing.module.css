@@ -1,271 +1,340 @@
-/* General Page Styles */
-.pageWrapper {
-  background-color: #fff;
-}
+/* Clean, minimal styles - using global CSS for base styling */
 
-.container {
-  max-width: 1280px;
+/* Main Container */
+.productResultSection {
+  max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
-}
-
-/* Hero Section */
-.hero {
-  text-align: center;
-  padding: 6rem 1.5rem;
-}
-
-.heroTitle {
-  font-size: 3.5rem;
-  font-weight: 700;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  color: var(--text-dark);
-}
-
-.gradientText {
-  background: linear-gradient(90deg, var(--brand-primary), #4f46e5);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-.heroSubtitle {
-  font-size: 1.25rem;
-  max-width: 700px;
-  margin: 0 auto;
-  color: var(--text-light);
-}
-
-/* Product List Styles */
-.pricingContainer {
-  padding-bottom: 6rem;
-}
-
-.productList {
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-}
-
-.productItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 2rem;
-  border: 1px solid var(--border-color);
-  border-radius: 16px;
-  border-left: 5px solid var(--accent-color);
-  transition: all 0.3s ease;
 }
 
-.productItem:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.08);
-  border-color: transparent;
-  border-left: 5px solid var(--accent-color);
+.productResultTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
-.productInfo h3 {
-  font-size: 1.75rem;
-  color: var(--text-dark);
-  margin: 0 0 0.5rem 0;
-}
-
-.productInfo p {
-  font-size: 1rem;
-  color: var(--text-light);
-  margin: 0;
-}
-
-.viewPricingButton {
-  padding: 0.75rem 1.5rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background-color: #f3f4f6;
-  color: var(--text-dark);
-  border: 1px solid var(--border-color);
-}
-
-.viewPricingButton:hover {
-  background-color: var(--brand-primary);
-  color: white;
-  border-color: var(--brand-primary);
-}
-
-.viewPricingButton .fa-arrow-right {
-  margin-left: 0.5rem;
-}
-
-/* Modal Styles */
-.modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(5px);
+/* Main Navigation */
+.mainTabNav {
   display: flex;
   justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modalContent {
-  background-color: white;
-  padding: 2.5rem;
-  border-radius: 16px;
-  width: 90%;
-  max-width: 1000px;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
-}
-
-.closeButton {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  color: var(--text-light);
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-
-.closeButton:hover {
-  color: var(--text-dark);
-}
-
-.modalHeader h2 {
-  font-size: 2rem;
-  margin: 0 0 2rem 0;
-}
-
-/* Tab Navigation in Modal */
-.tabNav {
-  display: flex;
-  gap: 0.5rem;
+  border-bottom: 1px solid #e5e7eb;
   margin-bottom: 2rem;
-  border-bottom: 1px solid var(--border-color);
 }
 
-.tabButton {
-  padding: 0.75rem 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border: none;
+.mainTabButton {
+  padding: 1rem 2rem;
   background: none;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #6b7280;
   cursor: pointer;
-  color: var(--text-light);
   position: relative;
-  transition: color 0.2s ease;
+  transition: color 0.2s;
 }
 
-.tabButton:hover {
-  color: var(--brand-primary);
+.mainTabButton.active {
+  color: #6366f1;
 }
 
-.tabButton.active {
-  color: var(--brand-primary);
-}
-
-.tabButton.active::after {
+.mainTabButton.active::after {
   content: '';
   position: absolute;
   bottom: -1px;
   left: 0;
   width: 100%;
   height: 2px;
-  background-color: var(--brand-primary);
+  background-color: #6366f1;
 }
 
-/* Pricing Card Styles (inside modal) */
-.tabContent {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 1.5rem;
-}
-
-.priceCard {
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
+/* License Type Section */
+.licenseTypeSection {
+  margin-bottom: 3rem;
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-
-.badge {
-  position: absolute;
-  top: 1rem;
-  right: -50px;
-  transform: rotate(45deg);
-  padding: 0.25rem 4rem;
-  font-size: 0.75rem;
-  font-weight: 700;
-  color: white;
+  background-color: #f8f9fa;
+  border-radius: 12px;
   text-align: center;
 }
 
-.priceCardName {
-  font-size: 1.25rem;
+.licenseTypeTitle {
+  font-size: 1.2rem;
   font-weight: 600;
-  color: var(--text-dark);
-  margin: 0 0 1rem 0;
+  margin-bottom: 1.5rem;
+  color: #374151;
 }
 
-.price {
-  font-size: 2.5rem;
+.licenseTypeButtons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.licenseTypeButton {
+  padding: 0.75rem 2rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.licenseTypeButton.active {
+  background-color: #6366f1;
+  color: white;
+  border-color: #6366f1;
+}
+
+.licenseDescription {
+  color: #6b7280;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Sub-navigation */
+.subTabNav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.subTabButton {
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  background: none;
+  border: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.subTabButton.active {
+  background-color: #eef2ff;
+  color: #6366f1;
+  border-color: #6366f1;
+}
+
+/* Calculator Controls */
+.calculatorControls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+}
+
+.controlGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.controlGroup label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Pricing Cards Grid */
+.pricingCardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.pricingCard {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 2rem;
+  position: relative;
+  transition: all 0.3s;
+}
+
+.pricingCard:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.pricingCard.popular {
+  border-color: #6366f1;
+  box-shadow: 0 10px 25px rgba(99, 102, 241, 0.2);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fbbf24;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--text-dark);
+}
+
+.cardHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.priceBlock {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
   margin-bottom: 0.5rem;
 }
 
-.priceTerm {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--text-light);
+.currency {
+  font-size: 1.5rem;
+  font-weight: 600;
 }
 
-.features {
-  list-style: none;
-  padding: 0;
-  margin: 1.5rem 0;
-  flex-grow: 1;
+.amount {
+  font-size: 3rem;
+  font-weight: 800;
 }
 
-.features li {
-  margin-bottom: 0.75rem;
-  color: var(--text-light);
+.term {
+  font-size: 0.9rem;
+  color: #6b7280;
 }
 
-.features li .fa-check {
-  color: #22c55e; /* Green checkmark */
-  margin-right: 0.75rem;
+.supportLevel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f3f4f6;
+  border-radius: 8px;
 }
 
 .buyButton {
   width: 100%;
   padding: 1rem;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  background-color: var(--accent-color);
+  background-color: #6366f1;
   color: white;
   border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  transition: background-color 0.2s;
 }
 
 .buyButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px color-mix(in srgb, var(--accent-color) 40%, transparent);
+  background-color: #5856eb;
+}
+
+.featuresList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding: 0.5rem 0;
+}
+
+.checkmark {
+  color: #10b981;
+  font-weight: bold;
+  font-size: 1.1rem;
+}
+
+/* Products Included Section */
+.productsIncluded {
+  margin-top: 4rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.comparisonTableWrapper {
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+.comparisonTable th,
+.comparisonTable td {
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #f3f4f6;
+  text-align: center;
+}
+
+.comparisonTable th {
+  background-color: #f8f9fa;
+  font-weight: 600;
+}
+
+.comparisonTable td:first-child,
+.comparisonTable th:first-child {
+  text-align: left;
+  font-weight: 500;
+}
+
+.included {
+  color: #10b981;
+  font-size: 1.2rem;
+}
+
+.notIncluded {
+  color: #d1d5db;
+  font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .productResultSection {
+    padding: 1rem;
+  }
+  
+  .calculatorControls {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .licenseTypeButtons {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .pricingCardsGrid {
+    grid-template-columns: 1fr;
+  }
 }

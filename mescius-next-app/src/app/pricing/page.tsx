@@ -2,25 +2,23 @@
 
 import React from 'react';
 import styles from './Pricing.module.css';
-import ProductList from './pricing/ProductList';
+import ProductResult from './components/ProductResult';
+import { pricingData } from './pricing-data';
 
 const PricingPage = () => {
+  // Find the ComponentOne product data directly.
+  const componentOneProduct = pricingData.find(p => p.id === 'componentone');
+
+  // Handle case where product isn't found
+  if (!componentOneProduct) {
+    return <div className={styles.container}>Product not found.</div>;
+  }
+
   return (
     <div className={styles.pageWrapper}>
-      <header className={styles.hero}>
-        <div className={styles.container}>
-          <h1 className={styles.heroTitle}>
-            <span className={styles.gradientText}>Flexible Developer</span> License Pricing
-          </h1>
-          <p className={styles.heroSubtitle}>
-            Find the right licensing plan for your development needs, from individual projects to large enterprise solutions.
-          </p>
-        </div>
-      </header>
-
-      <main className={`${styles.container} ${styles.pricingContainer}`}>
-        {/* The page is now cleaner, delegating the work to a dedicated component */}
-        <ProductList />
+      <main className={styles.container}>
+        {/* Render the ProductResult component directly with the C1 data */}
+        <ProductResult product={componentOneProduct} />
       </main>
     </div>
   );
