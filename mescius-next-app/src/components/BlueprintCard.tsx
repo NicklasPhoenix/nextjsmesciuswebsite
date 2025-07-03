@@ -2,59 +2,59 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './BlueprintCard.module.css';
+import { FaReact, FaAngular, FaVuejs, FaJs, FaWindows, FaDesktop, FaMobileAlt } from 'react-icons/fa';
+import { SiBlazor } from 'react-icons/si';
 
-// REVERTED: Using the simple Font Awesome map again.
-const frameworkIconMap: { [key: string]: string } = {
-  react: 'fa-brands fa-react',
-  angular: 'fa-brands fa-angular',
-  vue: 'fa-brands fa-vuejs',
-  winforms: 'fa-brands fa-windows',
-  wpf: 'fa-brands fa-windows',
-  // MODIFIED: Use the microchip icon for .NET here as well for consistency
-  dotnet: 'fa-solid fa-microchip',
-  net: 'fa-solid fa-microchip',
-};
-
-type Blueprint = {
+// Define the Blueprint interface
+interface Blueprint {
+  id: string;
   href: string;
   product: string;
   title: string;
+  excerpt: string;
   frameworks: string[];
+}
+
+// A complete mapping of framework IDs to icons and names
+const frameworkIconMap: { [key: string]: { icon: React.ReactNode; name: string } } = {
+  react: { icon: <FaReact />, name: 'React' },
+  angular: { icon: <FaAngular />, name: 'Angular' },
+  vue: { icon: <FaVuejs />, name: 'Vue' },
+  js: { icon: <FaJs />, name: 'JavaScript' },
+  blazor: { icon: <SiBlazor />, name: 'Blazor' },
+  maui: { icon: <FaMobileAlt />, name: 'MAUI' },
+  winforms: { icon: <FaDesktop />, name: 'WinForms' },
+  wpf: { icon: <FaWindows />, name: 'WPF' },
+  dotnet: { icon: <span className={styles.dotNetTextIcon}>.NET</span>, name: '.NET' },
 };
 
-// MODIFIED: Wrap the component with React.forwardRef
-const BlueprintCard = React.forwardRef<HTMLAnchorElement, Blueprint>(
-  ({ href, product, title, frameworks }, ref) => {
-    return (
-      <Link href={href} className={`${styles.card} ${styles[product] || ''}`} ref={ref}>
-        <div className={styles.content}>
-          {/* NEW: A smart banner-style tag for the product */}
-          <span className={styles.productTag}>{product}</span>
-          <h3 className={styles.title}>{title}</h3>
-        </div>
+const BlueprintCard = ({ blueprint }: { blueprint: Blueprint }) => {
+  return (
+    <Link href={blueprint.href} className={`${styles.card} ${styles[blueprint.product]}`}>
+      <div className={styles.content}>
+        <span className={styles.productTag}>{blueprint.product}</span>
+        <h3 className={styles.title}>{blueprint.title}</h3>
+        {/* REMOVED: The <p> tag for the excerpt is now gone. */}
+      </div>
+      <div className={styles.footer}>
+        <div className={styles.frameworks}>
+          {/* MODIFIED: Ensure the correct structure for hover effects */}
+          {blueprint.frameworks.map((fwId) => {
+            const iconData = frameworkIconMap[fwId];
+            if (!iconData) return null;
 
-        <div className={styles.footer}>
-          <div className={styles.frameworks}>
-            {frameworks.map((fwKey) => {
-              const framework = frameworkIconMap[fwKey];
-              if (!framework) return null;
-              const frameworkName = fwKey.charAt(0).toUpperCase() + fwKey.slice(1);
-              return (
-                <div key={fwKey} className={styles.frameworkIconWrapper}>
-                  <i className={`${framework} ${styles.frameworkIcon}`} aria-label={frameworkName}></i>
-                  <span className={styles.tooltip}>{frameworkName}</span>
-                </div>
-              );
-            })}
-          </div>
-          <div className={styles.arrowLink}>
-            <span>→</span>
-          </div>
+            return (
+              <div key={fwId} className={styles.frameworkIconWrapper}>
+                <span className={styles.frameworkIcon}>{iconData.icon}</span>
+                <div className={styles.tooltip}>{iconData.name}</div>
+              </div>
+            );
+          })}
         </div>
-      </Link>
-    );
-  }
-);
+        <span className={styles.arrowLink}>→</span>
+      </div>
+    </Link>
+  );
+};
 
-BlueprintCard.displayName = 'BlueprintCard'; // Good practice for debugging
 export default BlueprintCard;

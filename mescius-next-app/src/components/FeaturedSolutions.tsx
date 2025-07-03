@@ -1,47 +1,34 @@
 // src/components/FeaturedSolutions.tsx
-import Link from 'next/link';
-import blueprintsData from '@/data/blueprints.json';
+import React from 'react';
 import BlueprintCard from './BlueprintCard';
+import blueprints from '../data/blueprints.json';
 import styles from './FeaturedSolutions.module.css';
-import type { Blueprint } from '@/lib/types';
+import Link from 'next/link';
 
-const typedBlueprintsData: Blueprint[] = blueprintsData;
-
-export default function FeaturedSolutions() {
-  const featuredBlueprints = typedBlueprintsData.slice(0, 3);
+const FeaturedSolutions = () => {
+  const featured = blueprints.slice(0, 3);
 
   return (
     <section className={styles.wrapper}>
       <div className={styles.container}>
         <div className={styles.header}>
-          <h2>Popular Solution Blueprints</h2>
-          <p>Start with our most common guides for solving complex development challenges.</p>
+          <h2>Featured Blueprints</h2>
+          {/* The "View All Solutions" button has been moved from here */}
         </div>
-
-        {/* The grid now wraps BOTH the cards and the button */}
         <div className={styles.grid}>
-          {featuredBlueprints.map((blueprint) => (
-            <BlueprintCard
-              key={blueprint.id}
-              id={blueprint.id}
-              href={blueprint.href}
-              product={blueprint.product}
-              industry={blueprint.industry}
-              title={blueprint.title}
-              excerpt={blueprint.excerpt}
-              frameworks={blueprint.frameworks}
-            />
+          {featured.map(blueprint => (
+            <BlueprintCard key={blueprint.id} blueprint={blueprint} />
           ))}
-
-          {/* The button container is now the LAST item INSIDE the grid */}
-          <div className={styles.ctaContainer}>
-            {/* Use the secondary button style for better visual hierarchy */}
-            <Link href="/solutions" className="btn btnSecondary">
-              View All Solutions →
-            </Link>
-          </div>
+        </div>
+        {/* ADDED: Container for the button below the grid */}
+        <div className={styles.ctaContainer}>
+          <Link href="/solutions" className="btn btnSecondary">
+            View All Solutions
+          </Link>
         </div>
       </div>
     </section>
   );
-}
+};
+
+export default FeaturedSolutions;

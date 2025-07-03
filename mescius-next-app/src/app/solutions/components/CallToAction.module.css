@@ -1,0 +1,102 @@
+.ctaContainer {
+  text-align: center;
+  padding: 4rem 2rem;
+  margin-top: 4rem;
+  border-radius: 16px;
+  color: white;
+  /* NEW: A vibrant gradient background */
+  background: linear-gradient(135deg, #4a00e0, #8e2de2);
+  position: relative;
+  overflow: hidden; /* To contain decorative elements */
+  box-shadow: 0 10px 30px -10px rgba(142, 45, 226, 0.5);
+}
+
+/* NEW: Add subtle decorative circles */
+.ctaContainer::before,
+.ctaContainer::after {
+  content: '';
+  position: absolute;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.ctaContainer::before {
+  width: 200px;
+  height: 200px;
+  top: -50px;
+  left: -80px;
+}
+
+.ctaContainer::after {
+  width: 300px;
+  height: 300px;
+  bottom: -120px;
+  right: -100px;
+}
+
+.ctaContainer h2,
+.ctaContainer p,
+.buttonGroup {
+  position: relative; /* Ensure content is above decorative circles */
+  z-index: 1;
+}
+
+.ctaContainer h2 {
+  font-size: 2.25rem;
+  font-weight: 800; /* Bolder */
+  margin-bottom: 1rem;
+  /* ADDED: Explicitly set the color to white to override global styles */
+  color: white;
+}
+
+.ctaContainer p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.85); /* Softer white */
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+
+.buttonGroup {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  padding: 0.9rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700; /* Bolder text */
+  border-radius: 8px;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* NEW: High-contrast primary button */
+.primaryButton {
+  background-color: white;
+  /* MODIFIED: Changed to a brighter, more vibrant purple for the text */
+  color: #6a11cb;
+}
+
+.primaryButton:hover {
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* NEW: Engaging secondary button */
+.secondaryButton {
+  background-color: transparent;
+  color: white;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.secondaryButton:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: white;
+  transform: translateY(-3px);
+}

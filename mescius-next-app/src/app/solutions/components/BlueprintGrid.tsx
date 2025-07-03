@@ -1,7 +1,7 @@
 import React from 'react';
 import BlueprintCard from '@/components/BlueprintCard';
 import styles from '../solutions.module.css';
-import { motion, AnimatePresence } from 'framer-motion'; // Import motion components
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Blueprint {
   id: string;
@@ -14,30 +14,26 @@ interface Blueprint {
 
 interface BlueprintGridProps {
   blueprints: Blueprint[];
-  // The gridRef is no longer needed for this animation approach, so we can remove it.
 }
 
-export default function BlueprintGrid({ blueprints }: BlueprintGridProps) {
+const BlueprintGrid = ({ blueprints }: BlueprintGridProps) => {
   return (
-    <motion.div layout className={styles.blueprintsGrid}>
-      {/* MODIFIED: Add mode="popLayout" to handle layout changes more smoothly */}
-      <AnimatePresence mode="popLayout">
+    <div className={styles.grid}>
+      <AnimatePresence>
         {blueprints.length > 0 ? (
-          blueprints.map(bp => (
+          blueprints.map(blueprint => (
             <motion.div
-              key={bp.id}
-              // MODIFIED: Change layout to "position" to only animate the element's transform
-              layout="position"
+              key={blueprint.id}
+              layout
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.8 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
+              transition={{ duration: 0.3 }}
             >
-              <BlueprintCard {...bp} />
+              <BlueprintCard blueprint={blueprint} />
             </motion.div>
           ))
         ) : (
-          // We can also animate the "empty state" message
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -48,6 +44,8 @@ export default function BlueprintGrid({ blueprints }: BlueprintGridProps) {
           </motion.div>
         )}
       </AnimatePresence>
-    </motion.div>
+    </div>
   );
-}
+};
+
+export default BlueprintGrid;

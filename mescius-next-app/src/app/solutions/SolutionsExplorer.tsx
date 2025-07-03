@@ -7,27 +7,36 @@ import blueprintsData from '@/data/blueprints.json';
 import type { Blueprint } from '@/lib/types';
 import BlueprintCard from '../../components/BlueprintCard';
 
+// Convert raw data to typed data
 const typedBlueprintsData: Blueprint[] = blueprintsData;
 
-// Define our filter buttons
+// Define filter options and the frameworks they should show
 const filters = [
   { key: 'all', label: 'All Products' },
-  { key: 'net', label: '.NET Suite' },
-  { key: 'js', label: 'JavaScript' },
-  { key: 'wijmo', label: 'Wijmo' },
-  { key: 'ds', label: 'Documents' },
-  { key: 'ar', label: 'Reporting' },
+  // Show any blueprint with one of these .NET frameworks in its array:
+  { key: 'net', label: '.NET Suite', frameworks: ['dotnet', 'blazor', 'maui', 'winforms', 'wpf'] },
+  // Show any blueprint with one of these JS frameworks in its array:
+  { key: 'js', label: 'JavaScript', frameworks: ['react', 'angular', 'vue'] },
+  // Simple single-framework filters:
+  { key: 'wijmo', label: 'Wijmo', frameworks: ['wijmo'] },
+  { key: 'ds', label: 'Documents', frameworks: ['documents'] },
+  { key: 'ar', label: 'Reporting', frameworks: ['reporting'] },
 ];
 
 export default function SolutionsExplorer() {
-  // State to keep track of the current filter
   const [activeFilter, setActiveFilter] = useState('all');
 
-  // Filter the blueprints based on the active filter
+  // Filter blueprints by matching frameworks, unless "all".
   const filteredBlueprints =
     activeFilter === 'all'
       ? typedBlueprintsData
-      : typedBlueprintsData.filter((b) => b.product === activeFilter);
+      : typedBlueprintsData.filter((b) =>
+          b.frameworks.some((fw) =>
+            filters
+              .find((f) => f.key === activeFilter)
+              ?.frameworks?.includes(fw)
+          )
+        );
 
   return (
     <div>

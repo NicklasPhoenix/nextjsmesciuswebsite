@@ -1,9 +1,12 @@
 /* src/components/FeaturedSolutions.module.css */
+
+/* This wrapper provides the large vertical spacing between sections */
 .wrapper {
-  padding: 5rem 0;
-  background-color: var(--background-subtle);
+  padding: 6rem 0;
+  background-color: #f9fafb;
 }
 
+/* This container centers the content and adds horizontal padding */
 .container {
   max-width: 1280px;
   margin: 0 auto;
@@ -12,12 +15,15 @@
 
 .header {
   text-align: center;
-  margin-bottom: 3.5rem;
+  /* MODIFIED: Increased bottom margin to add more space below the headline */
+  margin-bottom: 6rem;
 }
 
 .header h2 {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
 }
 
 .header p {
@@ -29,14 +35,22 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
+  grid-template-columns: repeat(1, 1fr);
+}
+
+/* For tablet and larger screens, display as a 3-column grid */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* THIS IS THE FIX FOR THE BUTTON LAYOUT */
 .ctaContainer {
   text-align: center;
-  margin-top: 2rem;
+  /* MODIFIED: Increased top margin to create more space from the grid above */
+  margin-top: 6rem;
   grid-column: 1 / -1; /* This tells it to span the full grid width */
 }
 

@@ -2,67 +2,31 @@
 .card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 2rem; /* Increase padding for a more spacious feel */
-  border-radius: 16px;
-  border: 2px solid transparent;
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
-  min-height: 240px; /* Adjust height for new content */
-  position: relative;
+  padding: 2rem;
+  border-radius: 16px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  transition: all 0.2s ease-in-out;
+  background-color: #f9fafb;
+  /* ADDED: This is the critical fix that allows the tooltips to be visible. */
+  overflow: visible;
 }
-
-/* --- Product-specific Background Tints --- */
-/* These create the subtle colored background seen in the image */
-.net { background-color: rgba(214, 86, 76, 0.05); }
-.js { background-color: rgba(128, 155, 89, 0.05); }
-/* Note: Wijmo uses the .js class, so it gets the green tint */
-.ar { background-color: rgba(234, 137, 57, 0.05); }
-.ds { background-color: rgba(90, 126, 158, 0.05); }
-/* NEW: Wijmo gets its own blue tint */
-.wijmo { background-color: rgba(72, 169, 197, 0.05); }
 
 .card:hover {
-  transform: translateY(-8px);
-  text-decoration: none;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+  /* ADDED: Sets the border color on hover to make it visible. */
+  border-color: #e5e7eb; /* A light grey border */
 }
 
-/* --- Product-specific VISIBLE Glow on Hover --- */
-/* This combines a colored border and a strong shadow for a noticeable effect */
-.net:hover {
-  border-color: rgba(214, 86, 76, 0.4);
-  box-shadow: 0 10px 30px -5px rgba(214, 86, 76, 0.2);
-}
-.js:hover {
-  border-color: rgba(128, 155, 89, 0.4);
-  box-shadow: 0 10px 30px -5px rgba(128, 155, 89, 0.2);
-}
-.ar:hover {
-  border-color: rgba(234, 137, 57, 0.4);
-  box-shadow: 0 10px 30px -5px rgba(234, 137, 57, 0.2);
-}
-.ds:hover {
-  border-color: rgba(90, 126, 158, 0.4);
-  box-shadow: 0 10px 30px -5px rgba(90, 126, 158, 0.2);
-}
-/* NEW: Wijmo gets its own blue glow */
-.wijmo:hover {
-  border-color: rgba(72, 169, 197, 0.4);
-  box-shadow: 0 10px 30px -5px rgba(72, 169, 197, 0.2);
-}
+/* Product-specific background colors */
+.card.net { background-color: #fce8f3; }
+.card.js { background-color: #eefbf3; }
+.card.wijmo { background-color: #e6f6ff; }
+.card.ar { background-color: #fff4e8; }
+.card.ds { background-color: #f0f2ff; }
 
-
-/* --- NEW BANNER-FOCUSED CONTENT LAYOUT --- */
-.content {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Center content vertically */
-  text-align: left; /* Align text to the left for a cleaner look */
-}
-
-/* NEW: Styles for the product tag banner */
 .productTag {
   display: inline-block;
   align-self: flex-start; /* Align tag to the left */
@@ -73,7 +37,7 @@
   color: white;
   padding: 0.3rem 0.85rem;
   border-radius: 999px; /* Pill shape */
-  margin-bottom: 2rem; /* Space between tag and title */
+  margin-bottom: 1rem; /* Space between tag and title */
 }
 
 /* Apply product colors to the tag banner */
@@ -84,81 +48,86 @@
 .wijmo .productTag { background-color: var(--product-wijmo); }
 
 .title {
-  font-size: 1.75rem; /* Make title larger as it's the main focus */
+  /* MODIFIED: Simplified for list view */
+  font-size: 1.5rem;
   font-weight: 600;
   color: var(--text-dark);
-  line-height: 1.4;
+  margin-bottom: 1rem;
+  text-wrap: balance;
 }
+
+/* REMOVED: All styles related to .excerpt are now gone. */
 
 /* --- Footer Layout --- */
 .footer {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding-top: 1.5rem;
+  justify-content: space-between;
+  /* ADDED: Ensure footer is pushed to the bottom */
+  margin-top: auto;
+  padding-top: 1.5rem; /* Add space above the footer */
 }
 
 .frameworks {
   display: flex;
-  gap: 0.5rem; /* Adjust gap for the new wrapper */
+  gap: 0.75rem;
   align-items: center;
 }
 
-/* NEW: Wrapper for each icon to position the tooltip */
+/* --- THIS IS THE FIX FOR THE HOVER EFFECT --- */
 .frameworkIconWrapper {
   position: relative;
-  padding: 0.5rem; /* Add padding to make hover easier */
 }
 
 .frameworkIcon {
-  /* REVERTED: Use font-size for Font Awesome icons */
-  font-size: 1.5rem;
-  color: #9ca3af;
+  font-size: 1.25rem;
+  color: #9ca3af; /* Default grey */
+  /* MODIFIED: Transition 'all' properties to include the transform. */
   transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
 }
 
-/* NEW: More responsive hover effect on the icon itself */
 .frameworkIconWrapper:hover .frameworkIcon {
-  color: var(--text-dark);
-  transform: scale(1.2);
+  color: var(--text-dark); /* Black on hover */
+  /* ADDED: Makes the icon lift up slightly on hover. */
+  transform: translateY(-2px);
 }
 
-/* NEW: Custom tooltip styles */
 .tooltip {
   position: absolute;
-  bottom: 110%; /* Position above the icon */
+  bottom: 140%;
   left: 50%;
-  transform: translateX(-50%) scale(0.8); /* Start slightly smaller */
+  transform: translateX(-50%) scale(0.9);
   background-color: var(--text-dark);
   color: white;
   padding: 0.3rem 0.75rem;
   border-radius: 6px;
   font-size: 0.8rem;
-  font-weight: 600;
+  font-weight: 500;
   white-space: nowrap;
-  opacity: 0;
-  pointer-events: none; /* Prevent tooltip from blocking mouse */
+  opacity: 0; /* Hidden by default */
+  pointer-events: none;
   transition: all 0.2s ease-in-out;
+  z-index: 10;
 }
 
-/* NEW: Show tooltip on hover */
 .frameworkIconWrapper:hover .tooltip {
-  opacity: 1;
+  opacity: 1; /* Show on hover */
   transform: translateX(-50%) scale(1);
-  bottom: 120%; /* Move it up slightly on hover */
 }
 
 .arrowLink {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--brand-primary);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  /* MODIFIED: Show arrow again for grid view */
+  display: block;
+  font-size: 1.5rem;
+  color: #9ca3af;
+  transition: all 0.2s ease-in-out;
 }
 
 .card:hover .arrowLink {
-  opacity: 1;
-  transform: translateX(-5px);
+  color: var(--text-dark);
+  transform: translateX(4px);
 }
 
 /* --- CONSOLIDATED STYLES FOR .NET ICON --- */
@@ -166,17 +135,15 @@
 
 /* 1. Default State (matches .frameworkIcon) */
 .dotNetTextIcon {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
-  color: #9ca3af; /* Same grey as other icons */
-  letter-spacing: -0.02em;
-  line-height: 1;
-  display: inline-block;
-  transition: all 0.2s ease-in-out; /* Match transition */
+  color: #9ca3af;
+  /* MODIFIED: Transition 'all' properties to include the transform. */
+  transition: all 0.2s ease-in-out;
 }
 
-/* 2. Hover State (matches .frameworkIcon) */
 .frameworkIconWrapper:hover .dotNetTextIcon {
-  color: var(--text-dark); /* Same dark color on hover */
-  transform: scale(1.2);   /* Same scale effect on hover */
+  color: var(--text-dark);
+  /* ADDED: Makes the .NET icon lift up slightly on hover. */
+  transform: translateY(-2px);
 }

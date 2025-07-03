@@ -1,17 +1,15 @@
 // src/app/solutions/page.tsx
 "use client";
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import blueprintsData from '@/data/blueprints.json';
 import styles from './solutions.module.css';
-// MODIFIED: Import the 'Variants' type from framer-motion
 import { motion, Variants } from 'framer-motion';
 
-// Import the new components
 import SolutionsHeader from './components/SolutionsHeader';
-import FilterControls from './components/FilterControls';
 import BlueprintGrid from './components/BlueprintGrid';
+import CallToAction from './components/CallToAction';
 
-// Define the Blueprint interface based on your JSON structure
 interface Blueprint {
   id: string;
   href: string;
@@ -21,65 +19,85 @@ interface Blueprint {
   frameworks: string[];
 }
 
-// Data for the main filter buttons. This could also be moved to a central data file.
-const solutionGroups = [
-  { id: 'all', label: 'All Solutions' },
-  { id: 'web', label: 'Web & Mobile', technologies: ['js', 'wijmo', 'react', 'angular', 'vue'] },
-  { id: 'net', label: '.NET', technologies: ['net', 'winforms', 'wpf', 'dotnet', 'ar', 'blazor', 'maui'] },
-  { id: 'data', label: 'Data Tools', technologies: ['ds'] }
-];
+// Data for the header's icon grid
+import techIconGroups from '@/data/solutionsPageData';
 
 export default function SolutionsPage() {
-  const [mainFilter, setMainFilter] = useState<string>('all');
-  const [iconFilter, setIconFilter] = useState<string | null>(null);
   const [activeIconName, setActiveIconName] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [visibleBlueprints, setVisibleBlueprints] = useState<Blueprint[]>([]);
-
-  useEffect(() => {
-    let filtered: Blueprint[] = blueprintsData;
-    const activeFilterId = iconFilter || mainFilter;
-
-    // 1. Filter by the active solution group
-    if (activeFilterId !== 'all') {
-      const group = solutionGroups.find(g => g.id === activeFilterId);
-      const filterTech = group?.technologies || [];
-      filtered = filtered.filter(blueprint => 
-        filterTech.includes(blueprint.product.toLowerCase()) ||
-        blueprint.frameworks.some(fw => filterTech.includes(fw.toLowerCase()))
-      );
-    }
-
-    // 2. Filter by the search term
-    if (searchTerm.trim() !== '') {
-      const lowercasedTerm = searchTerm.toLowerCase();
-      filtered = filtered.filter(blueprint => 
-        blueprint.title.toLowerCase().includes(lowercasedTerm) ||
-        blueprint.excerpt.toLowerCase().includes(lowercasedTerm) ||
-        blueprint.product.toLowerCase().includes(lowercasedTerm)
-      );
-    }
-    
-    setVisibleBlueprints(filtered);
-  }, [mainFilter, iconFilter, searchTerm]);
-
-  const handleMainFilterClick = (groupId: string) => {
-    setMainFilter(groupId);
-    setIconFilter(null);
-    setActiveIconName(null);
-  };
+  const [visibleBlueprints, setVisibleBlueprints] = useState<Blueprint[]>(blueprintsData);
 
   const handleIconFilterClick = (groupId: string, name: string) => {
     if (activeIconName === name) {
-      setIconFilter(null);
       setActiveIconName(null);
     } else {
-      setIconFilter(groupId);
       setActiveIconName(name);
     }
   };
 
-  // MODIFIED: Explicitly type the variants objects using the 'Variants' type
+  useEffect(() => {
+    let filteredResult = [...blueprintsData];
+
+    // 1. Icon filter
+    if (activeIconName) {
+      // Groups for JS & .NET
+      const jsFrameworks = ['react', 'angular', 'vue', 'js'];
+      const netFrameworks = ['dotnet', 'blazor', 'maui', 'winforms', 'wpf'];
+
+      // FIXED: Simplified naming - no more mismatches
+      const nameToIdMap: { [key: string]: string } = {
+        'React': 'react',
+        'Angular': 'angular',
+        'Vue': 'vue',     // FIXED: Just Vue, not Vue.js
+        'Blazor': 'blazor',
+        'MAUI': 'maui',   // FIXED: Just MAUI, not .NET MAUI
+        'WinForms': 'winforms',
+        'WPF': 'wpf',
+      };
+
+      // Add logging for the active icon name
+      console.log(`Active icon name: '${activeIconName}'`);
+      
+      if (activeIconName === 'All Solutions') {
+        // Show everything
+        filteredResult = [...blueprintsData];
+      } else if (activeIconName === 'JavaScript') {
+        filteredResult = filteredResult.filter(bp =>
+          bp.frameworks.some(fw => jsFrameworks.includes(fw))
+        );
+      } else if (activeIconName === '.NET') {
+        filteredResult = filteredResult.filter(bp =>
+          bp.frameworks.some(fw => netFrameworks.includes(fw))
+        );
+      } else {
+        // FIXED: Simple direct mapping with no special cases
+        const frameworkId = nameToIdMap[activeIconName];
+        console.log(`Framework ID for ${activeIconName}: ${frameworkId}`);
+        
+        if (frameworkId) {
+          filteredResult = filteredResult.filter(bp => {
+            return bp.frameworks.includes(frameworkId);
+          });
+        } else {
+          filteredResult = [];
+        }
+      }
+      
+      console.log(`Found ${filteredResult.length} results for ${activeIconName}`);
+    }
+
+    // 2. Search filter
+    if (searchTerm.trim() !== '') {
+      const lowercasedTerm = searchTerm.toLowerCase();
+      filteredResult = filteredResult.filter(blueprint =>
+        blueprint.title.toLowerCase().includes(lowercasedTerm) ||
+        blueprint.excerpt.toLowerCase().includes(lowercasedTerm)
+      );
+    }
+
+    setVisibleBlueprints(filteredResult);
+  }, [activeIconName, searchTerm]);
+
   const containerVariants: Variants = {
     hidden: {},
     visible: {
@@ -101,8 +119,8 @@ export default function SolutionsPage() {
       initial="hidden"
       animate="visible"
     >
-      {/* This structure is correct. The explicit types above should fix the error. */}
       <motion.div variants={itemVariants}>
+        {/* RESTORED: Pass all required props to the header */}
         <SolutionsHeader
           searchTerm={searchTerm}
           onSearchChange={setSearchTerm}
@@ -111,19 +129,16 @@ export default function SolutionsPage() {
         />
       </motion.div>
 
-      <motion.div variants={itemVariants}>
-        <FilterControls
-          solutionGroups={solutionGroups}
-          currentFilter={mainFilter}
-          onFilterClick={handleMainFilterClick}
-          isIconFilterActive={!!iconFilter}
-        />
-      </motion.div>
+      {/* REMOVED: The separate FilterControls component is gone */}
 
       <motion.div variants={itemVariants}>
         <BlueprintGrid
           blueprints={visibleBlueprints}
         />
+      </motion.div>
+
+      <motion.div variants={itemVariants}>
+        <CallToAction />
       </motion.div>
     </motion.main>
   );

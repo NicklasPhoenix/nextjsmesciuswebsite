@@ -1,13 +1,5 @@
 [
   {
-    "id": "desktop-modernization",
-    "href": "/solutions/desktop-modernization",
-    "product": "net",
-    "title": "Modernize Legacy Desktop UI",
-    "excerpt": "Your WinForms & WPF apps feel slow and outdated. Breathe new life into them with high-performance, modern controls.",
-    "frameworks": ["winforms", "wpf"]
-  },
-  {
     "id": "interactive-finance",
     "href": "/solutions/interactive-finance",
     "product": "js",
@@ -29,7 +21,7 @@
     "product": "ar",
     "title": "Automate Pixel-Perfect Reports",
     "excerpt": "Generating consistent invoices, statements, and compliance documents is a headache. Automate it from any data source.",
-    "frameworks": ["dotnet", "react"]
+    "frameworks": ["dotnet", "blazor"]
   },
   {
     "id": "document-management",
@@ -38,5 +30,61 @@
     "title": "Manage PDFs & Office Files in Code",
     "excerpt": "Integrating document functionality requires multiple libraries. Use one powerful API to view, edit, and convert files in your app.",
     "frameworks": ["dotnet"]
+  },
+  {
+    "id": "excel-like-data-entry",
+    "href": "/solutions/excel-like-data-entry",
+    "product": "js",
+    "title": "Embed Excel-like Editing in Your Web App",
+    "excerpt": "Users demand powerful data entry features like Excel, but building them is a major project. Embed a full-featured spreadsheet for complex data editing and calculations.",
+    "frameworks": ["react", "angular", "vue"]
+  },
+  {
+    "id": "cross-platform-native-apps",
+    "href": "/solutions/cross-platform-native-apps",
+    "product": "net",
+    "title": "Build Native Apps for Any Platform",
+    "excerpt": "Developing for iOS, Android, and Windows separately drains resources. Use one .NET codebase with our UI controls to build beautiful, native apps for every device.",
+    "frameworks": ["maui"]
+  },
+  {
+    "id": "interactive-data-grids",
+    "href": "/solutions/interactive-data-grids",
+    "product": "wijmo",
+    "title": "Display Millions of Records Instantly",
+    "excerpt": "Your data grid freezes when loading large datasets. Use a virtualized datagrid that provides a responsive experience with millions of rows.",
+    "frameworks": ["blazor", "react", "vue"]
+  },
+  {
+    "id": "vue-dashboard",
+    "href": "/solutions/vue-dashboard",
+    "product": "js",
+    "title": "Vue.js Interactive Dashboard",
+    "excerpt": "Build a responsive, data-rich dashboard application with Vue.js and Wijmo controls.",
+    "frameworks": ["vue", "js"]
+  },
+  {
+    "id": "maui-mobile-app",
+    "href": "/solutions/maui-mobile-app",
+    "product": "net",
+    "title": ".NET MAUI Cross-Platform App",
+    "excerpt": "Create a native mobile application that works across iOS, Android and Windows with a single .NET MAUI codebase.",
+    "frameworks": ["maui", "dotnet"]
+  },
+  {
+    "id": "winforms-desktop",
+    "href": "/solutions/winforms-desktop",
+    "product": "net",
+    "title": "WinForms Desktop Application",
+    "excerpt": "Build powerful Windows desktop applications with familiar .NET WinForms technology and modern UI controls.",
+    "frameworks": ["winforms", "dotnet"]
+  },
+  {
+    "id": "wpf-enterprise",
+    "href": "/solutions/wpf-enterprise",
+    "product": "net",
+    "title": "WPF Enterprise Application",
+    "excerpt": "Create sophisticated Windows applications with WPF's powerful UI framework and advanced data visualization.",
+    "frameworks": ["wpf", "dotnet"]
   }
 ]

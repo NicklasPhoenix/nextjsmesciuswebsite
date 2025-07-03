@@ -175,12 +175,23 @@
   margin-top: 0;
   margin-bottom: 4rem;
   border-top: 1px solid var(--border-color);
+  margin-bottom: 4rem;
+  text-align: center;
 }
 
-.filters button {
+.mainFilters {
+  /* ADDED: Use flexbox to create space between the buttons */
+  display: inline-flex;
+  gap: 0.5rem;
+  background-color: #f3f4f6; /* A light grey background for the container */
+  padding: 0.5rem;
+  border-radius: 999px; /* Pill shape for the container */
+}
+
+.mainFilters button {
+  padding: 0.75rem 1.5rem;
   background: transparent;
   border: 1px solid var(--border-color);
-  padding: 0.75rem 1.5rem;
   border-radius: 8px;
   /* --- Use a font designed for UI clarity --- */
   font-family: 'Inter', sans-serif;
@@ -246,6 +257,23 @@
   background-color: #f9fafb;
   border-radius: 12px;
   color: var(--text-light);
+}
+
+/* --- New Styles --- */
+.grid {
+  /* MODIFIED: Restore the grid layout */
+  display: grid;
+  gap: 2rem; /* Space between cards */
+  grid-template-columns: repeat(1, 1fr); /* Default to 1 column on mobile */
+  max-width: 1280px; /* Widen the container for a grid layout */
+  margin: 4rem auto 0; /* Add space above the grid */
+}
+
+/* Use a 3-column grid on larger screens */
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 /* Responsive */
