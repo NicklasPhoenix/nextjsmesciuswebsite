@@ -21,26 +21,79 @@
   gap: 1.5rem;
 }
 
-/* THE FIX: Give the card a solid background and a clean design */
+/* MODIFIED: Final card styling with correct alignment and new hover effect */
 .techCard {
   text-decoration: none;
   color: var(--text-light);
-  background-color: var(--background-light); /* Solid white background */
-  border: 1px solid var(--border-color);
-  padding: 2.5rem 2rem;
-  border-radius: 12px;
-  text-align: center;
-  transition: all 0.2s ease-in-out;
-}
-.techCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
-  border-color: var(--brand-primary);
+  background-color: #fff;
+  border: 1px solid #f0f0f0;
+  padding: 2rem;
+  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  /* MODIFIED: Align content to the left as shown in the image */
+  align-items: flex-start;
+  text-align: left;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative; /* Required for the new hover effect */
+  overflow: hidden; /* Keeps the gradient effect contained */
 }
 
-.icon { font-size: 2.25rem; margin-bottom: 1.5rem; color: var(--brand-primary); }
-.techCard h3 { color: var(--text-dark); font-size: 1.25rem; font-weight: 600; margin: 0 0 0.5rem 0; }
-.techCard p { font-size: 0.9rem; margin-bottom: 0; }
+/* ADDED: Pseudo-element for the radial gradient hover effect */
+.techCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(106, 17, 203, 0.15),
+    transparent 20%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.techCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(90, 90, 130, 0.12);
+  border-color: transparent;
+}
+
+/* ADDED: Activates the gradient effect on hover */
+.techCard:hover::before {
+  opacity: 1;
+}
+
+/* Icon styling is correct, alignment is handled by the parent card */
+.icon {
+  font-size: 1.75rem;
+  background-color: #f3eefc; /* Pale lavender background */
+  color: var(--brand-primary);
+  border-radius: 10px;
+  width: 54px;
+  height: 54px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  transition: none; /* Remove all transitions from the icon itself */
+}
+
+.techCard h3 {
+  color: var(--text-dark);
+  font-size: 1.15rem; /* Adjusted font size */
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+}
+
+.techCard p {
+  font-size: 0.9rem;
+  margin-bottom: 0;
+  line-height: 1.6; /* Improved readability */
+}
 
 /* Responsive styles */
 @media (max-width: 1100px) { .grid { grid-template-columns: repeat(3, 1fr); } }

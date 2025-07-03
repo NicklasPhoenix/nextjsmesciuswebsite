@@ -1,8 +1,11 @@
 // src/app/layout.tsx
 import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
 import './globals.css'; // Your global styles
 import Header from '@/components/Header'; // Import Header
 import Footer from '@/components/Footer'; // Import Footer
+
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Mescius - Modern Solutions',
@@ -26,7 +29,7 @@ export default function RootLayout({
           referrerPolicy="no-referrer"
         />
       </head>
-      <body>
+      <body className={inter.className}>
         <Header /> {/* The Header is now correctly placed */}
         <main>{children}</main>
         <Footer /> {/* The Footer is now correctly placed */}

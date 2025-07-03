@@ -114,10 +114,6 @@
   flex-grow: 1;
 }
 
-.megaMenuCategory {
-  /* This is now a grid item, no special layout needed */
-}
-
 /* ADDED: This new class makes the target category span both columns */
 .spanFullWidth {
   grid-column: 1 / -1;
