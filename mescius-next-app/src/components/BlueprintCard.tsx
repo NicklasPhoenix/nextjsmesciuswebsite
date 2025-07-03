@@ -3,6 +3,7 @@ import Link from 'next/link';
 import styles from './BlueprintCard.module.css';
 import type { Blueprint } from '@/lib/types';
 
+// REVERTED: Using the simple Font Awesome map again.
 const frameworkIconMap: { [key: string]: string } = {
   react: 'fa-brands fa-react',
   angular: 'fa-brands fa-angular',
@@ -12,27 +13,34 @@ const frameworkIconMap: { [key: string]: string } = {
   dotnet: 'fa-solid fa-microchip',
 };
 
-export default function BlueprintCard({ href, product, title, excerpt, frameworks }: Blueprint) {
-  // The main change is simplifying the structure and class names
+export default function BlueprintCard({ href, product, title, frameworks }: Blueprint) {
   return (
     <Link href={href} className={`${styles.card} ${styles[product] || ''}`}>
       <div className={styles.content}>
+        {/* NEW: A smart banner-style tag for the product */}
+        <span className={styles.productTag}>{product}</span>
         <h3 className={styles.title}>{title}</h3>
-        <p className={styles.excerpt}>{excerpt}</p>
       </div>
+
       <div className={styles.footer}>
         <div className={styles.frameworks}>
           {frameworks.map((fwKey) => {
             const framework = frameworkIconMap[fwKey];
             if (!framework) return null;
-            return ( <i key={fwKey} className={`${framework} ${styles.frameworkIcon}`} title={fwKey}></i> );
+            const frameworkName = fwKey.charAt(0).toUpperCase() + fwKey.slice(1);
+            return (
+              <div key={fwKey} className={styles.frameworkIconWrapper}>
+                {/* REVERTED: Using simple <i> tags for Font Awesome icons */}
+                <i className={`${framework} ${styles.frameworkIcon}`} aria-label={frameworkName}></i>
+                <span className={styles.tooltip}>{frameworkName}</span>
+              </div>
+            );
           })}
         </div>
         <div className={styles.arrowLink}>
-          View Blueprint <span>→</span>
+          <span>→</span>
         </div>
       </div>
-      <span className={styles.tag}>{product}</span>
     </Link>
   );
 }

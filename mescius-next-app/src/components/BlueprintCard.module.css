@@ -2,108 +2,161 @@
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #fff; /* Use a clean white background */
-  border-radius: 16px; /* Softer, more modern radius */
-  border: 1px solid var(--border-color);
-  color: var(--text-light);
+  justify-content: space-between;
+  padding: 2rem; /* Increase padding for a more spacious feel */
+  border-radius: 16px;
+  border: 2px solid transparent;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  overflow: hidden;
-  position: relative; /* Needed for the absolute positioned tag */
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   height: 100%;
+  min-height: 240px; /* Adjust height for new content */
+  position: relative;
 }
+
+/* --- Product-specific Background Tints --- */
+/* These create the subtle colored background seen in the image */
+.net { background-color: rgba(214, 86, 76, 0.05); }
+.js { background-color: rgba(128, 155, 89, 0.05); }
+/* Note: Wijmo uses the .js class, so it gets the green tint */
+.ar { background-color: rgba(234, 137, 57, 0.05); }
+.ds { background-color: rgba(90, 126, 158, 0.05); }
+/* NEW: Wijmo gets its own blue tint */
+.wijmo { background-color: rgba(72, 169, 197, 0.05); }
 
 .card:hover {
-  transform: translateY(-8px); /* More noticeable lift effect */
+  transform: translateY(-8px);
   text-decoration: none;
 }
 
-/* --- Product-specific Glow Effect on Hover --- */
-.net:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(214, 86, 76, 0.3); }
-.js:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(128, 155, 89, 0.3); }
-.wijmo:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(72, 169, 197, 0.3); }
-.ar:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(234, 137, 57, 0.3); }
-.ds:hover { box-shadow: 0 10px 30px -5px rgba(0,0,0,0.07), 0 0 20px rgba(90, 126, 158, 0.3); }
+/* --- Product-specific VISIBLE Glow on Hover --- */
+/* This combines a colored border and a strong shadow for a noticeable effect */
+.net:hover {
+  border-color: rgba(214, 86, 76, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(214, 86, 76, 0.2);
+}
+.js:hover {
+  border-color: rgba(128, 155, 89, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(128, 155, 89, 0.2);
+}
+.ar:hover {
+  border-color: rgba(234, 137, 57, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(234, 137, 57, 0.2);
+}
+.ds:hover {
+  border-color: rgba(90, 126, 158, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(90, 126, 158, 0.2);
+}
+/* NEW: Wijmo gets its own blue glow */
+.wijmo:hover {
+  border-color: rgba(72, 169, 197, 0.4);
+  box-shadow: 0 10px 30px -5px rgba(72, 169, 197, 0.2);
+}
 
 
-/* --- New Content and Footer Layout --- */
+/* --- NEW BANNER-FOCUSED CONTENT LAYOUT --- */
 .content {
-  padding: 2rem;
   flex-grow: 1;
-}
-
-.title {
-  font-size: 1.5rem; /* Larger, more prominent title */
-  font-weight: 700;
-  color: var(--text-dark);
-  margin: 0 0 0.75rem 0;
-  line-height: 1.3;
-}
-
-.excerpt {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: var(--text-light);
-}
-
-.footer {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  border-top: 1px solid var(--border-color);
-  background-color: var(--background-subtle); /* Subtle background for footer */
+  flex-direction: column;
+  justify-content: center; /* Center content vertically */
+  text-align: left; /* Align text to the left for a cleaner look */
 }
 
-.frameworks {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.frameworkIcon {
-  font-size: 1.5rem;
-  color: #9ca3af; /* Muted icon color */
-  transition: color 0.2s ease;
-}
-
-.card:hover .frameworkIcon {
-  color: var(--text-dark);
-}
-
-.arrowLink {
-  font-weight: 600;
-  color: var(--brand-primary);
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.arrowLink span {
-  transition: transform 0.2s ease;
-}
-
-.card:hover .arrowLink span {
-  transform: translateX(5px);
-}
-
-/* --- New Product Tag Styling --- */
-.tag {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
+/* NEW: Styles for the product tag banner */
+.productTag {
+  display: inline-block;
+  align-self: flex-start; /* Align tag to the left */
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: white;
-  padding: 0.25rem 0.75rem;
+  padding: 0.3rem 0.85rem;
   border-radius: 999px; /* Pill shape */
+  margin-bottom: 2rem; /* Space between tag and title */
 }
 
-/* Apply product colors to the new tag */
-.net .tag { background-color: var(--product-net); }
-.js .tag { background-color: var(--product-js); }
-.wijmo .tag { background-color: var(--product-wijmo); }
-.ar .tag { background-color: var(--product-ar); }
-.ds .tag { background-color: var(--product-ds); }
+/* Apply product colors to the tag banner */
+.net .productTag { background-color: var(--product-net); }
+.js .productTag { background-color: var(--product-js); }
+.ar .productTag { background-color: var(--product-ar); }
+.ds .productTag { background-color: var(--product-ds); }
+.wijmo .productTag { background-color: var(--product-wijmo); }
+
+.title {
+  font-size: 1.75rem; /* Make title larger as it's the main focus */
+  font-weight: 600;
+  color: var(--text-dark);
+  line-height: 1.4;
+}
+
+/* --- Footer Layout --- */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.5rem;
+}
+
+.frameworks {
+  display: flex;
+  gap: 0.5rem; /* Adjust gap for the new wrapper */
+  align-items: center;
+}
+
+/* NEW: Wrapper for each icon to position the tooltip */
+.frameworkIconWrapper {
+  position: relative;
+  padding: 0.5rem; /* Add padding to make hover easier */
+}
+
+.frameworkIcon {
+  /* REVERTED: Use font-size for Font Awesome icons */
+  font-size: 1.5rem;
+  color: #9ca3af;
+  transition: all 0.2s ease-in-out;
+}
+
+/* NEW: More responsive hover effect on the icon itself */
+.frameworkIconWrapper:hover .frameworkIcon {
+  color: var(--text-dark);
+  transform: scale(1.2);
+}
+
+/* NEW: Custom tooltip styles */
+.tooltip {
+  position: absolute;
+  bottom: 110%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%) scale(0.8); /* Start slightly smaller */
+  background-color: var(--text-dark);
+  color: white;
+  padding: 0.3rem 0.75rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none; /* Prevent tooltip from blocking mouse */
+  transition: all 0.2s ease-in-out;
+}
+
+/* NEW: Show tooltip on hover */
+.frameworkIconWrapper:hover .tooltip {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+  bottom: 120%; /* Move it up slightly on hover */
+}
+
+.arrowLink {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover .arrowLink {
+  opacity: 1;
+  transform: translateX(-5px);
+}

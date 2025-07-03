@@ -1,42 +1,42 @@
 [
   {
-    "id": "desktop-evolution",
-    "href": "/solutions/desktop-evolution",
+    "id": "desktop-modernization",
+    "href": "/solutions/desktop-modernization",
     "product": "net",
-    "title": "Desktop Evolution",
-    "excerpt": "Transform legacy WinForms & WPF applications into modern, high-performance powerhouses.",
+    "title": "Modernize Legacy Desktop UI",
+    "excerpt": "Your WinForms & WPF apps feel slow and outdated. Breathe new life into them with high-performance, modern controls.",
     "frameworks": ["winforms", "wpf"]
   },
   {
     "id": "interactive-finance",
     "href": "/solutions/interactive-finance",
     "product": "js",
-    "title": "Interactive Finance",
-    "excerpt": "Build secure, collaborative financial models and dashboards for the modern web.",
+    "title": "Build Real-Time Finance Apps",
+    "excerpt": "Building secure, collaborative financial models that handle real-time data is complex. Use our pre-built, high-performance components.",
     "frameworks": ["react", "angular", "vue"]
   },
   {
     "id": "hyperspeed-analytics",
     "href": "/solutions/hyperspeed-analytics",
     "product": "wijmo",
-    "title": "Hyperspeed Analytics",
-    "excerpt": "Deliver real-time BI dashboards that process millions of data points without compromise.",
+    "title": "Dashboards Slow with Big Data?",
+    "excerpt": "Standard charts buckle under the load of millions of data points. Deliver BI dashboards that process massive datasets instantly.",
     "frameworks": ["react", "angular", "vue"]
   },
   {
-    "id": "automated-reporting",
-    "href": "/solutions/automated-reporting",
+    "id": "enterprise-reporting",
+    "href": "/solutions/enterprise-reporting",
     "product": "ar",
-    "title": "Automated Reporting",
-    "excerpt": "Generate pixel-perfect invoices, statements, and reports for any platform, on demand.",
+    "title": "Automate Pixel-Perfect Reports",
+    "excerpt": "Generating consistent invoices, statements, and compliance documents is a headache. Automate it from any data source.",
     "frameworks": ["dotnet", "react"]
   },
   {
-    "id": "document-intelligence",
-    "href": "/solutions/document-intelligence",
+    "id": "document-management",
+    "href": "/solutions/document-management",
     "product": "ds",
-    "title": "Document Intelligence",
-    "excerpt": "Programmatically create, manipulate, and manage complex documents and PDFs at scale.",
+    "title": "Manage PDFs & Office Files in Code",
+    "excerpt": "Integrating document functionality requires multiple libraries. Use one powerful API to view, edit, and convert files in your app.",
     "frameworks": ["dotnet"]
   }
 ]

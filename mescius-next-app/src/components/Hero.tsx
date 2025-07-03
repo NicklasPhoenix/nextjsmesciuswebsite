@@ -1,33 +1,13 @@
 // src/components/Hero.tsx
 "use client";
 import Link from 'next/link';
-import { useRef, useEffect } from "react";
 import BlueprintCard from './BlueprintCard';
+import blueprints from '../data/blueprints.json';
 import styles from './Hero.module.css';
 
-// Sample data for the card we want to display
-const featuredBlueprint = {
-  id: "desktop-evolution",
-  href: "/solutions/desktop-evolution",
-  product: "net",
-  title: "Desktop Evolution",
-  excerpt: "Transform legacy WinForms & WPF applications into modern, high-performance powerhouses.",
-  frameworks: ["winforms", "wpf"]
-};
-
 export default function Hero() {
-  const cardRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const card = cardRef.current;
-    if (!card) return;
-    const handleAnimationEnd = () => {
-      card.classList.add(styles.settled);
-      card.style.animation = "none";
-    };
-    card.addEventListener("animationend", handleAnimationEnd);
-    return () => card.removeEventListener("animationend", handleAnimationEnd);
-  }, []);
+  // Feature the first, most important blueprint.
+  const featuredBlueprint = blueprints[0];
 
   return (
     <section className={styles.hero}>
@@ -50,9 +30,9 @@ export default function Hero() {
             </Link>
           </div>
         </div>
+        {/* NEW: A spotlight visual for a single, featured card */}
         <div className={styles.visual}>
-          <div ref={cardRef}>
-            {/* We now use our REAL BlueprintCard component here */}
+          <div className={styles.cardWrapper}>
             <BlueprintCard {...featuredBlueprint} />
           </div>
         </div>
