@@ -6,19 +6,268 @@
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+
+.headerContent {
+  flex: 1 1 55%;
+  max-width: 650px;
 }
 
 .header h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  letter-spacing: -1.5px;
+  font-size: 4rem;
+  font-weight: 800; /* Bolder for more impact */
+  /* --- Add Gradient to Text --- */
+  background: linear-gradient(45deg, var(--brand-primary), #5E54D6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
 }
 
 .header p {
   font-size: 1.25rem;
   color: var(--text-light);
-  max-width: 700px;
-  margin: 1rem auto 0;
+  margin: 1rem 0 2.5rem; /* Increased bottom margin */
+  max-width: 500px;
+}
+
+/* --- Refined Search Bar --- */
+.searchContainer {
+  position: relative;
+}
+
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.25rem 1rem 3.5rem; /* Add left padding for icon */
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1);
+}
+
+/* --- Dynamic Tech Showcase --- */
+.headerVisual {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align to top for better group layout */
+}
+
+/* Remove the old .techGrid style */
+/* .techGrid { ... } */
+
+/* New styles for icon groups */
+.techGroupsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 380px;
+}
+
+.techGroupTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+
+.techGroupIcons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.techIcon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  font-size: 1.75rem;
+  color: var(--text-light);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+/* --- Restore Hover and Active Effects --- */
+/* Don't apply hover effect if the icon is already active */
+.techIcon:hover:not(.active) {
+  transform: scale(1.1);
+  color: var(--brand-primary);
+}
+
+/* Style for the active tech icon */
+.techIcon.active {
+  background-color: var(--brand-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Fix for the text-based .NET icon */
+.textIcon {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: inherit;
+}
+
+/* --- Custom Tooltip on Hover --- */
+.tooltipText {
+  position: absolute;
+  bottom: 120%; /* Position above the icon */
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+  pointer-events: none; /* Allow clicks to pass through to the icon */
+}
+
+.techIcon:hover .tooltipText {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Filter styles */
+.filters {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 2.5rem; /* Space between text and filters */
+  padding-top: 2rem;
+  margin-top: 0;
+  margin-bottom: 4rem;
+  border-top: 1px solid var(--border-color);
+}
+
+.filters button {
+  background: transparent;
+  border: 1px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  /* --- Use a font designed for UI clarity --- */
+  font-family: 'Inter', sans-serif;
+  /* Inter looks great at a semi-bold weight */
+  font-weight: 600;
+  color: var(--text-light);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 120px;
+
+  /* --- Enhanced Font Rendering --- */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  /* Force hardware acceleration for smoother rendering */
+  transform: translateZ(0);
+}
+
+.filters button.active {
+  background-color: var(--brand-primary);
+  color: white;
+  border-color: var(--brand-primary);
+  /* Add a very subtle shadow to make text appear sharper */
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.filters button:not(.active):hover {
+  background-color: rgba(var(--brand-primary-rgb), 0.05);
+  border-color: var(--brand-primary);
+  color: var(--brand-primary);
+}
+
+/* Blueprints grid */
+.blueprintsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 2rem;
+  transition: height 0.5s ease;
+}
+
+/* Blueprint item styles */
+.blueprintItem {
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Animation classes */
+.fadeOut {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.fadeIn {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Empty state */
+.emptyState {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 2rem;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  color: var(--text-light);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .headerContent {
+    text-align: center;
+  }
+  .header p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+  }
 }

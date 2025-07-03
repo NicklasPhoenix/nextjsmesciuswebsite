@@ -1,0 +1,155 @@
+/* Move all styles from .header down to .tooltipText here */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+  padding: 4rem 0;
+  margin-bottom: 3rem;
+}
+.headerContent {
+  flex: 1 1 55%;
+  max-width: 650px;
+}
+.header h1 {
+  font-size: 4rem;
+  font-weight: 800;
+  background: linear-gradient(45deg, var(--brand-primary), #5E54D6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header p {
+  font-size: 1.25rem;
+  color: var(--text-light);
+  margin: 1rem 0 2.5rem;
+  max-width: 500px;
+}
+.searchContainer {
+  position: relative;
+}
+.searchIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-light);
+  font-size: 1.1rem;
+}
+.searchInput {
+  width: 100%;
+  padding: 1rem 1.25rem 1rem 3.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background-color: white;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.searchInput:focus {
+  outline: none;
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgb), 0.1);
+}
+.headerVisual {
+  flex: 1 1 45%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.techGroupsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+  max-width: 380px;
+}
+.techGroupTitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-light);
+  margin-bottom: 0.75rem;
+  padding-left: 0.25rem;
+}
+.techGroupIcons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+.techIcon {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f3f4f6;
+  border-radius: 12px;
+  font-size: 1.75rem;
+  color: var(--text-light);
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+.techIcon:hover:not(.active) {
+  transform: scale(1.1);
+  color: var(--brand-primary);
+}
+.techIcon.active {
+  background-color: var(--brand-primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* MODIFIED: Make .textIcon a global style */
+:global(.textIcon) {
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: inherit; /* Inherits color from the parent .techIcon */
+}
+
+.tooltipText {
+  position: absolute;
+  bottom: 120%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #333;
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease-out, visibility 0.2s ease-out;
+  pointer-events: none;
+}
+.techIcon:hover .tooltipText {
+  opacity: 1;
+  visibility: visible;
+}
+/* Add responsive styles */
+@media (max-width: 992px) {
+  .header {
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem 0;
+    text-align: center;
+  }
+  .headerContent {
+    text-align: center;
+  }
+  .header p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 2rem;
+  }
+  .header h1 {
+    font-size: 2.5rem;
+  }
+}

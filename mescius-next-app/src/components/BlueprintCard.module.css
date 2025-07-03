@@ -160,3 +160,23 @@
   opacity: 1;
   transform: translateX(-5px);
 }
+
+/* --- CONSOLIDATED STYLES FOR .NET ICON --- */
+/* DELETE all previous .dotNetTextIcon rules and use this block */
+
+/* 1. Default State (matches .frameworkIcon) */
+.dotNetTextIcon {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #9ca3af; /* Same grey as other icons */
+  letter-spacing: -0.02em;
+  line-height: 1;
+  display: inline-block;
+  transition: all 0.2s ease-in-out; /* Match transition */
+}
+
+/* 2. Hover State (matches .frameworkIcon) */
+.frameworkIconWrapper:hover .dotNetTextIcon {
+  color: var(--text-dark); /* Same dark color on hover */
+  transform: scale(1.2);   /* Same scale effect on hover */
+}
