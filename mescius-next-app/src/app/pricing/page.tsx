@@ -3,22 +3,23 @@
 import React from 'react';
 import styles from './Pricing.module.css';
 import ProductResult from './components/ProductResult';
-import { pricingData } from './pricing-data';
 
 const PricingPage = () => {
-  // Find the ComponentOne product data directly.
-  const componentOneProduct = pricingData.find(p => p.id === 'componentone');
-
-  // Handle case where product isn't found
-  if (!componentOneProduct) {
-    return <div className={styles.container}>Product not found.</div>;
-  }
+  // Create a mock "unified" product that represents all MESCIUS products combined
+  const unifiedProduct = {
+    id: 'mescius',
+    name: 'MESCIUS',
+    platform: 'all' as 'net' | 'js',
+    accentColor: '#6366f1',
+    description: 'Complete development toolkit for all platforms.',
+    tabs: []
+  };
 
   return (
     <div className={styles.pageWrapper}>
       <main className={styles.container}>
-        {/* Render the ProductResult component directly with the C1 data */}
-        <ProductResult product={componentOneProduct} />
+        {/* Render the ProductResult component with the unified product */}
+        <ProductResult product={unifiedProduct} />
       </main>
     </div>
   );
